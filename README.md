@@ -28,6 +28,6 @@
 - IDE：Cloud9
 
 ## 使用素材
-football-data API　http://api.football-data.org/
-API-SPORTS https://api-sports.io/
-その他使用素材検討中です
+- football-data API　url: http://api.football-data.org/
+- API-SPORTS url: https://api-sports.io/
+- その他使用素材検討中です
