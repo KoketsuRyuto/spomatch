@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'users#index'
     resources :users, only: [:show,:edit,:update]
-    resources :sports, only: [:index,:create,:edit,:update]
+    resources :sports, only: [:index,:create,:edit,:update,:destroy]
     resources :tags, only: [:index,:create,:edit,:update]
     resources :posts, only: [:index,:show,:destroy] do
       resources :post_comments, only: [:index,:destroy]
