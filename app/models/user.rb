@@ -9,4 +9,10 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :group_users, dependent: :destroy
   has_many :group_chats, dependent: :destroy
+  
+  has_one_attached :profile_image
+  
+  def get_profile_image(width,height)
+    profile_image.variant(resize_to_fill: [width,height]).processed
+  end
 end

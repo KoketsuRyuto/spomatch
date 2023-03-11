@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :users, only: [:show,:edit,:update,:confilm,:withdraw]
+    resources :users, only: [:show,:edit,:update]
     resources :posts do
       resources :post_comments, only: [:create,:destroy]
       resource :favorites, only: [:create,:destroy]
@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       resources :group_chats, only: [:show,:create]
     end
     get 'join' => 'groups#join'
+    get "users/confilm" => "users#confilm"
+    patch 'users/withdraw' => 'users#withdraw'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
