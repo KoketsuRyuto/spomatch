@@ -1,34 +1,9 @@
-<div class="containe">
+<div class="container">
   <div class="row mt-5">
     <div class="col-md-8 mx-auto">
       <h4 class="text-center">スポーツ一覧・追加</h4>
-      <%= form_with model: @sport, url: admin_sports_path, method: :post, local: true do |f| %>
-        <table class="table table-borderless mx-auto mt-5" style="width: 70%">
-          <td class="align-middle text-center"><%= f.label :name, "スポーツ名", class:"mt-2" %></td>
-          <td class="text-center"><%= f.text_field :name, class:"form-control" %></td>
-          <td class="text-center"><%= f.submit "新規登録", class:"btn btn-success px-3" %></td>
-        </table>
-      <% end %>
-      <div class="row mt-5">
-        <table class="table mx-auto" style="width: 50%">
-          <thead class="bg-dark text-white">
-            <tr>
-              <th scope="col" class="text-center" style="width: 60%">スポーツ</th>
-              <th scope="col" style="width: 20%"></th>
-              <th scope="col" style="width: 20%"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @sports.each do |sport| %>
-            <tr>
-              <td class=" align-middle text-center"><%= sport.name %></td>
-              <td class="text-center"><%= link_to "編集", edit_admin_sport_path(sport), class:"btn btn-primary" %></td>
-              <td class="text-center"><%= link_to "削除", admin_sport_path(sport), method: :delete, class:"btn btn-danger" %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render "form", sport: @sport %>
+      <%= render "index", sports: @sports %>
     </div>
   </div>
 </div>

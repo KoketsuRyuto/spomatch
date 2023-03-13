@@ -1,2 +1,44 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-header bg-dark text-white text-center">新規投稿</div>
+        <% if @post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> が発生しました：</h2>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="card-body">
+          <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+            <div class="form-group">
+              <%= f.label :title, "タイトル" %>
+              <%= f.text_field :title, placeholder: "タイトル 100文字以内", class:"form-control" %> 
+            </div>
+            <div class="form-group">
+              <%= f.label :body, "本文" %>
+              <%= f.text_area :body, class:"form-control", rows: 15 %>
+            </div>
+            <div class="form-group">
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                <div class="form-check form-check-inline">
+                  <%= tag.label class:"form-check-label", style: "display: inline-block;" do %>
+                    <%= tag.check_box class:"form-check-input" %>
+                    <%= tag.text %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="actions text-center">
+              <%= f.submit '投稿する', class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

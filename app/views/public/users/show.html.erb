@@ -9,7 +9,7 @@
       </ul>
     </div>
     <div class="col-md-6 mt-5 mx-auto">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body">
           <div class="row">
             <div class="col-md-2 mx-auto"></div>
@@ -40,6 +40,7 @@
           <div class="tab-content border">
             <div class="tab-pane active" id="post" role="tabpanel">
               <h6 class="my-5">タイトルが入ります</h6>
+              
             </div>
             <div class="tab-pane" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
               <h6 class="my-5">いいねした投稿が入ります</h6>
@@ -49,12 +50,7 @@
       </div>
     </div>
     <div class="col-md-2 mt-5 mx-auto">
-      <% @sports.each do |sport| %>
-        <table>
-          <td><%= link_to sport.name, "" %></td>
-          <hr width="100%">
-        </table>
-      <% end %>
+
     </div>
   </div>
 </div>

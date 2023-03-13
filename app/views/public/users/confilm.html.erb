@@ -1,2 +1,17 @@
-<h1>Public::Users#confilm</h1>
-<p>Find me in app/views/public/users/confilm.html.erb</p>
+<div class="container">
+  <div class="row mt-5 mx-auto">
+    <div class="col-md-8 mx-auto">
+      <div class="mt-5">
+        <h5 class="font-weight-bold text-center">本当に退会しますか？</h5>
+      </div>
+      <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-md-3 text-center">
+          <%= link_to '退会しない', user_path(current_user), class:"btn btn-primary" %>
+        </div>
+        <div class="col-md-3 text-center">
+          <%= link_to '退会する', users_withdraw_path, method: :patch, class:"btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

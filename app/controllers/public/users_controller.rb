@@ -1,7 +1,4 @@
 class Public::UsersController < ApplicationController
-  
-  def confilm
-  end
   def show
     @user = current_user
     @posts = current_user.posts
@@ -18,6 +15,15 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def confilm
+  end
+  
+  def withdraw
+    current_user.update(is_deleted: true)
+    reset_session
+    flash[:alert] = '退会しました。'
+    redirect_to root_path
+  end
   
   private
   

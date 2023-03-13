@@ -1,2 +1,23 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-2 mx-auto">
+    </div>
+    <div class="col-md-6 mx-auto">
+      <h5>SPOMATCH BLOG</h5>
+      <% @posts.each do |post| %>
+        <table class="table">
+          <tr>
+            <td>
+              <p><%= link_to post.title, post_path(post) %></p>
+              <p><%= post.body %></p>
+            </td>
+            <td><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50) %><% end %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <%= render "layouts/sports", sports: @sports %>
+    </div>
+  </div>
+</div>
