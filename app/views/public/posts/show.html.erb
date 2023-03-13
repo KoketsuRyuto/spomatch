@@ -1,13 +1,39 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-2 mx-auto">
-      
+      <%= render 'layouts/sports', sports: @sports %>
     </div>
     <div class="col-md-6 mx-auto">
-      
+      <h4><%= @post.title %></h4>
+      <div class="card">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <%= image_tag @post.user.get_profile_image(100,100), class:"card-image-top" %>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <div class="card-title"><h5><%= @post.user.name %></h5></div>
+              <p class="card-text"><small class="text-muted">投稿日を記載</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body mt-5">
+        <%= @post.body %>
+      </div>
+      <hr width=100%>
+      <% if @post.favorited_by?(current_user) %>
+        <%= link_to post_favorites_path(@post), method: :delete, style: "color: green;" do %>
+          いいね<i class="fas fa-thumbs-up"></i><%= @post.favorites.count %>
+        <% end %>
+      <% else %>
+        <%= link_to post_favorites_path(@post), method: :post do %>
+          いいね！ <i class="fas fa-thumbs-up"></i> <%= @post.favorites.count %>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-md-2 mx-auto">
-      
+      <%= render 'layouts/sports', sports: @sports %>
     </div>
   </div>
 </div>
