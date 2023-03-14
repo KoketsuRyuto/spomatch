@@ -21,6 +21,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
     @sports = Sport.all
   end
 
@@ -28,9 +29,23 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   
+  def update
+    Post.find(params[:id]).update(update_params)
+    redirect_to post_path(params[:id])
+  end
+  
+  def destroy
+    Post.find(params[:id]).destroy
+    redirect_to posts_path
+  end
+  
   private
   
   def post_params
     params.require(:post).permit(:title,:body, tag_ids: [])
+  end
+  
+  def update_params
+    params.require(:post).permit(:title,:body,)
   end
 end

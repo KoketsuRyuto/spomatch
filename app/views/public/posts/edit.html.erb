@@ -1,2 +1,21 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6 col-sm-12 mx-auto">
+      <div class="card shadow">
+        <div class="card-header bg-dark text-white text-center">投稿編集</div>
+        <% if @post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> が発生しました：</h2>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="card-body">
+          <%= render 'post_form', post: @post %>
+        </div>
+    </div>
+  </div>
+</div>

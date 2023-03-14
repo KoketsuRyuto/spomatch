@@ -1,17 +1,18 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-2 mx-auto">
+      <%= render "layouts/sports", sports: @sports %>
     </div>
     <div class="col-md-6 mx-auto">
-      <h5>SPOMATCH BLOG</h5>
+      <h5 class="border-bottom text-center">SPOMATCH BLOG</h5>
       <% @posts.each do |post| %>
-        <table class="table">
-          <tr>
+        <table class="table table-sm table-borderless mt-4">
+          <tr class="border-bottom">
             <td>
               <p><%= link_to post.title, post_path(post) %></p>
               <p><%= post.body %></p>
             </td>
-            <td><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50) %><% end %></td>
+            <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
           </tr>
         </table>
       <% end %>

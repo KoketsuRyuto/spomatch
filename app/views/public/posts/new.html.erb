@@ -14,29 +14,7 @@
           </div>
         <% end %>
         <div class="card-body">
-          <%= form_with model: @post, url: posts_path, method: :post do |f| %>
-            <div class="form-group">
-              <%= f.label :title, "タイトル" %>
-              <%= f.text_field :title, placeholder: "タイトル 100文字以内", class:"form-control" %> 
-            </div>
-            <div class="form-group">
-              <%= f.label :body, "本文" %>
-              <%= f.text_area :body, class:"form-control", rows: 15 %>
-            </div>
-            <div class="form-group">
-              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-                <div class="form-check form-check-inline">
-                  <%= tag.label class:"form-check-label", style: "display: inline-block;" do %>
-                    <%= tag.check_box class:"form-check-input" %>
-                    <%= tag.text %>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-            <div class="actions text-center">
-              <%= f.submit '投稿する', class:"btn btn-primary" %>
-            </div>
-          <% end %>
+          <%= render 'post_form', post: @post %>
         </div>
       </div>
     </div>
