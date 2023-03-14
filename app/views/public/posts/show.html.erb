@@ -17,8 +17,10 @@
             </div>
           </div>
           <div class="col-md-3 my-auto">
-            <%= link_to '投稿編集', edit_post_path(@post), class:"btn btn-sm btn-secondary" %>
-            <%= link_to '投稿削除', post_path(@post), method: :delete, class:"btn btn-sm btn-danger mt-2" %>
+            <% if @post.user == current_user %>
+              <%= link_to '投稿編集', edit_post_path(@post), class:"btn btn-sm btn-secondary" %>
+              <%= link_to '投稿削除', post_path(@post), method: :delete, class:"btn btn-sm btn-danger mt-2" %>
+            <% end %>
           </div>
         </div>
       </div>

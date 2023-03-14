@@ -1,3 +1,12 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.about-visual {
+  width: 70%;
+  height: 300px;
+  margin: auto;
+  background-image: url(assets/soccer.jpg);
+  background-size: cover;
+  background-position: center;
+}
