@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-2 mx-auto">
-      <%= render "layouts/sports", sports: @sports %>
+    <div class="col-md- mx-auto">
+      <%= render "layouts/tags", tags: @tags %>
     </div>
     <div class="col-md-6 mx-auto">
-      <h5 class="border-bottom text-center">SPOMATCH BLOG</h5>
+      <h3 class="border-bottom">SPOMATCH BLOG</h3>
       <% @posts.each do |post| %>
-        <table class="table table-sm table-borderless mt-4">
+        <table class="table table-sm table-borderless mt-3">
           <tr class="border-bottom">
             <td>
-              <p><%= link_to post.title, post_path(post) %></p>
-              <p><%= post.body %></p>
+              <%= link_to post.title, post_path(post) %><br>
+              <%= post.body.truncate(20) %>
             </td>
             <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
           </tr>

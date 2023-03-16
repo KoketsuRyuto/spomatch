@@ -1,2 +1,43 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="top-visual">
+  <div class="top-visual-content">
+    <h1 class="top-visual-text">
+      Life Is Good
+    </h1>
+    <p class="top-visual-text1">
+      〜人生は素晴らしい〜
+    </p>
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-2 mx-auto">
+      <p class="text-center">タグ一覧</p>
+      <%= render "layouts/tags", tags: @tags %>
+    </div>
+    <div class="col-md-6 mx-auto">
+      <div class="mx-auto">
+        <h4 class="border-bottom">新着投稿</h4>
+        <div class="row mx-auto">
+          <% @posts.each do |post| %>
+            <table class="table table-sm table-borderless mt-3">
+              <tr class="border-bottom">
+                <td>
+                  <%= link_to post.title, post_path(post) %><br>
+                  <%= post.body.truncate(20) %>
+                </td>
+                <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+
+      </div>
+    </div>
+    <div class="col-md-2 mx-auto">
+      <p class="text-center">スポーツ一覧</p>
+      <%= render "layouts/sports", sports: @sports %>
+    </div>
+  </div>
+</div>

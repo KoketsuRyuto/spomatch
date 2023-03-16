@@ -1,6 +1,7 @@
-<% sports.each do |sport| %>
-  <table>
-    <td><%= link_to sport.name, "" %></td>
-    <hr width="100%">
-  </table>
-<% end %>
+<table class="table align-middle">
+  <% sports.each do |sport| %>
+    <tr>
+      <td><%= link_to sport.name, "" %></td>
+    </tr>
+  <% end %>
+</table>

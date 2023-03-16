@@ -17,12 +17,14 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     @sports = Sport.all
+    @tags = Tag.all
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @sports = Sport.all
+    @tags = Tag.all
   end
 
   def edit

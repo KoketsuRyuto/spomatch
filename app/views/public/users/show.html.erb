@@ -1,22 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 mt-5 mx-auto">
-      <ul>
-        <li><%= link_to "新規投稿", new_post_path %></li>
-        <li><%= link_to "投稿一覧", posts_path %></li>
-        <li><%= link_to "新規グループ作成", new_group_path %></li>
-        <li><%= link_to "グループ一覧", groups_path %></li>
-      </ul>
+    <div class="col-md-2 mt-5 mx-auto">
+      <table class="table table-border-bottm">
+        <tr>
+          <td><%= link_to "新規投稿", new_post_path %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "投稿一覧", posts_path %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "新規グループ作成", new_group_path %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "グループ一覧", groups_path %></td>
+        </tr>
+      </table>
     </div>
     <div class="col-md-6 mt-5 mx-auto">
       <div class="card shadow">
         <div class="card-body">
           <div class="row">
             <div class="col-md-2 mx-auto"></div>
-            <div class="col-md-4 mx-auto">
+            <div class="col-md-4 mx-auto align-middle">
               <p class="text-center">
                 <% if @user.profile_image.attached? %>
-                  <%= image_tag @user.get_profile_image(100,100) %>
+                  <%= image_tag @user.get_profile_image(100,100), class:"card-image-top rounded-circle" %>
                 <% else %>
                   <%= image_tag 'no_image', size: "100x100" %>
                 <% end %>
@@ -39,18 +47,18 @@
           </ul>
           <div class="tab-content border">
             <div class="tab-pane active" id="post" role="tabpanel">
-              <h6 class="my-5">タイトルが入ります</h6>
-              
+              <h6 class="m-5">タイトルが入ります</h6>
+
             </div>
             <div class="tab-pane" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-              <h6 class="my-5">いいねした投稿が入ります</h6>
+              <h6 class="m-5">いいねした投稿が入ります</h6>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-md-2 mt-5 mx-auto">
-
+      <%= render 'layouts/sports', sports: @sports %>
     </div>
   </div>
 </div>
