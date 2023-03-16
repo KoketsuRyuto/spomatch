@@ -1,0 +1,33 @@
+<% if current_page?('/admin/sports') %>
+  <%= form_with model: sport, url: admin_sports_path, method: :post, local: true do |f| %>
+    <table class="table table-borderless mx-auto mt-5" style="width: 70%">
+      <td class="align-middle text-center"><%= f.label :name, "スポーツ名", class:"mt-2" %></td>
+      <td class="text-center"><%= f.text_field :name, class:"form-control" %></td>
+      <td class="text-center"><%= f.submit "新規登録", class:"btn btn-success px-3" %></td>
+    </table>
+  <% end %>
+<% elsif current_page?('/admin/sports/:id/edit') %>
+  <%= form_with model: sport, url: admin_sport_path, method: :patch do |f| %>
+    <table class="table table-borderless mx-auto mt-3" style="width: 70%">
+      <td class="align-middle text-center"><%= f.label :name, "スポーツ名", class:"mt-2" %></td>
+      <td class="text-center"><%= f.text_field :name, class:"form-control" %></td>
+      <td class="text-center"><%= f.submit "更新", class:"btn btn-info px-4" %></td>
+    </table>
+  <% end %>
+<% elsif current_page?('/admin/tags') %>
+  <%= form_with model: tag, url: admin_tags_path, method: :post, local: true do |f| %>
+    <table class="table table-borderless mx-auto mt-5" style="width: 70%">
+      <td class="align-middle text-center"><%= f.label :name, "タグ名", class:"mt-2" %></td>
+      <td class="text-center"><%= f.text_field :name, class:"form-control" %></td>
+      <td class="text-center"><%= f.submit "新規登録", class:"btn btn-success px-3" %></td>
+    </table>
+  <% end %>
+<% else %>
+  <%= form_with model: tag, url: admin_tag_path, method: :patch do |f| %>
+    <table class="table table-borderless mx-auto mt-3" style="width: 70%">
+      <td class="align-middle text-center"><%= f.label :name, "タグ名", class:"mt-2" %></td>
+      <td class="text-center"><%= f.text_field :name, class:"form-control" %></td>
+      <td class="text-center"><%= f.submit "更新", class:"btn btn-info px-4" %></td>
+    </table>
+  <% end %>
+<% end %>

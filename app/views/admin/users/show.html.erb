@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12 mx-auto">
+      <h5 class="text-center">会員情報詳細</h5>
+      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+        <table class="table mt-4">
+          <tr class="text-center">
+            <th>ID</th>
+            <th>ユーザーネーム</th>
+            <th>Email</th>
+            <th>会員ステータス</th>
+            <th>ステータス変更</th>
+          </tr>
+          <tr class="text-center">
+            <td><%= @user.id %></td>
+            <td><%= @user.name %></td>
+            <td><%= @user.email %></td>
+            <td>
+              <% if @user.is_deleted == false %>
+                <label class="text-success">有効</label>
+              <% else %>
+                退会
+              <% end %>
+            </td>
+            <td>
+              <%= f.radio_button :is_deleted, false %>
+              <%= f.label :is_deleted, '有効' %>
+              <%= f.radio_button :is_deleted, true %>
+              <%= f.label :is_deleted, '退会' %>
+            </td>
+          </tr>
+        </table>
+        <div class="text-center">
+          <%= f.submit '保存', class:"btn btn-success px-5" %>
+        </div>
+      <% end %>
+      <div class="mt-5">
+        <h5 class="text-center">投稿一覧</h5>
+        <table class="teble mt-4 mx-auto">
+          <% @posts.each do |post| %>
+            <tr class="border-bottom">
+              <td>
+                <p><%= link_to post.title, post_path(post) %></p>
+                <p><%= post.body.truncate(20) %></p>
+              </td>
+              <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

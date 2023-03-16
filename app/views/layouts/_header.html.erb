@@ -1,0 +1,41 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-white bg-dark">
+    <div class="container">
+      <a class="navbar-brand text-white" href="/">
+        <span class="h2 text-white font-weight-bold mr-4">Spomatch</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <% if user_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to about_path, class: "h6 mr-3 text-white" do %>About<% end %></li>
+              <li><%= link_to user_path(current_user), class: "h6 mr-3 text-white" do %>マイページ<% end %></li>
+              <li><%= link_to posts_path, class: "h6 mr-3 text-white" do %>投稿一覧<% end %></li>
+              <li><%= link_to destroy_user_session_path, method: :delete, class: "h6 mr-3 text-white" do %>ログアウト<% end %></li>
+            </ul>
+          <% elsif admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to about_path, class: "h6 mr-3 text-white" do %>About<% end %></li>
+              <li><%= link_to admin_posts_path, class: "h6 mr-3 text-white" do %>投稿一覧<% end %></li>
+              <li><%= link_to admin_path, class: "h6 mr-3 text-white" do %>会員一覧<% end %></li>
+              <li><%= link_to admin_sports_path, class: "h6 mr-3 text-white" do %>スポーツ一覧<% end %></li>
+              <li><%= link_to admin_tags_path, class: "h6 mr-3 text-white" do %>タグ一覧<% end %></li>
+              <li><%= link_to destroy_admin_session_path, method: :delete, class: "h6 mr-3 text-white" do %>ログアウト<% end %></li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to about_path, class: "h6 mr-3 text-white" do %>About<% end %></li>
+              <li><%= link_to posts_path, class: "h6 mr-3 text-white" do %>投稿一覧<% end %></li>
+              <li><%= link_to new_user_registration_path, class: "h6 mr-3 text-white" do %>新規登録<% end %></li>
+              <li><%= link_to new_user_session_path, class: "h6 mr-3 text-white" do %>ログイン<% end %></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
