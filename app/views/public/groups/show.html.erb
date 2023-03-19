@@ -1,9 +1,45 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-md-2">
-      <%= 
+      <h4>メンバー</h4>
+      <ul>
+        <% @users.each do |user| %>
+          <li><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %> <%= user.name %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="col-md-8"></div>
-    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <div class="col-md-8 mx-auto">
+        <div class="card shadow">
+          <div class="row g-0">
+            <div class="col-md-3">
+              <%= image_tag @group.get_group_image(100,100), class:"card-image img-fluid" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body d-flex flex-column p-0 pt-1">
+                <h3><%= link_to @group.name %></h3>
+                <h6 class="text-muted"><small>ジャンル名： <%= @group.sports.pluck(:name).join("・") %></small></h6>
+                <p class="py-2 my-auto">
+                  <% if @group.owner_id == current_user.id %>
+                    <%= link_to 'グループチャット', group_group_chat_path(@group), class:"btn btn-sm btn-success" %>
+                    <%= link_to 'グループ編集', edit_group_path(@group), class:"btn btn-sm btn-secondary" %>
+                    <%= link_to 'グループ削除', group_path(@group), method: :delete, class:"btn btn-sm btn-danger" %>
+                  <% elsif @group.users.include?(current_user) %>
+                    <%= link_to 'グループチャット', group_group_chat_path(@group), class:"btn btn-sm btn-success" %>
+                    <%= link_to 'グループを退会', group_withdraw(@group), method: :delete, class:"btn btn-sm btn-danger" %>
+                  <% else %>
+                    <%= link_to 'グループに参加', group_join_path(@group), class:"btn btn-sm btn-info" %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10 mt-5 mx-auto">
+        <h5 class="border-bottom">紹介文</h5>
+        <%= simple_format(@group.introduction) %>
+      </div>
+    </div>
   </div>
 </div>

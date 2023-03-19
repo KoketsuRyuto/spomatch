@@ -1,2 +1,16 @@
-<h1>Public::GroupChats#show</h1>
-<p>Find me in app/views/public/group_chats/show.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 mx-auto">
+      <h3><i class="fas fa-comment-dots"></i> <%= @group.name %>のチャットルーム</h3>
+      <div class="card">
+        <%= render 'group_chat', group_chats: @group_chats %>
+      </div>
+      <div class="form">
+        <%= form_with model: @group_chat ,url: group_group_chats_path, method: :post do |f| %>
+          <%= f.text_field :content, placeholder: 'メッセージを入力してください' %>
+          <%= f.submit '送信' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

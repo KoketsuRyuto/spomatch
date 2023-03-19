@@ -8,6 +8,7 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    @group.users << current_user
     if @group.save
       redirect_to groups_path
     else
@@ -21,6 +22,19 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @users = @group.users
+  end
+  
+  def join
+    @group = Group.find(params[:id])
+    @group.users << current_user
+    redirect_to group_path(@group)
+  end
+  
+  def withdraw
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
+    redirect_to groups_path
   end
 
   def edit

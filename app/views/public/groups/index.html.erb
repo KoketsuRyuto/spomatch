@@ -5,21 +5,15 @@
       <% @groups.each do |group| %>
           <div class="card mt-4">
             <div class="row g-0">
-              <div class="col-md-3 px-0 group-image">
-                <%= image_tag group.get_group_image(100,100), class:"card-image-top" %>
+              <div class="col-md-3">
+                <%= image_tag group.get_group_image(100,100), class:"card-image img-fluid" %>
               </div>
-              <div class="col-md-6">
-                <div class="card-body p-2">
-                  <div class="card-title mb-0"><h5 class="mb-0"><%= link_to group.name, group_path(group), style:"color: #212529;" %></h5></div>
-                  <p class="mb-0"><small>ジャンル名： <%= group.sports.pluck(:name).join("・") %></small></p>
-                  <p class="mb-0"><small>メンバー： <%= group.group_users.count %></small></p>
+              <div class="col-md-9">
+                <div class="card-body d-flex flex-column">
+                  <h3><%= link_to group.name, group_path(group), style:"color: #212529;" %></h3>
+                  <h6 class="text-muted"><small>ジャンル名： <%= group.sports.pluck(:name).join("・") %></small></h6>
+                  <h6 class="text-muted"><small>メンバー： <%= group.group_users.count %></small></h6>
                 </div>
-              </div>
-              <div class="col-md-3 my-auto text-center">
-                <% if group.owner_id == current_user.id %>
-                  <%= link_to 'グループ編集', edit_group_path(group), class:"btn btn-sm btn-secondary" %>
-                  <%= link_to 'グループ削除', group_path(group), method: :delete, class:"btn btn-sm btn-danger mt-2" %>
-                <% end %>
               </div>
             </div>
           </div>
