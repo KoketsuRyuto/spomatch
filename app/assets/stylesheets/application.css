@@ -13,4 +13,11 @@
  *= require_tree .
  *= require_self
  */
- 
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 10px;
+  width: 100%;
+}

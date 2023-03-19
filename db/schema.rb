@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_12_144426) do
+ActiveRecord::Schema.define(version: 2023_03_18_111558) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 2023_03_12_144426) do
     t.index ["user_id"], name: "index_group_chats_on_user_id"
   end
 
+  create_table "group_sports", force: :cascade do |t|
+    t.integer "sport_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_sports_on_group_id"
+    t.index ["sport_id"], name: "index_group_sports_on_sport_id"
+  end
+
   create_table "group_users", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "group_id", null: false
@@ -84,10 +93,8 @@ ActiveRecord::Schema.define(version: 2023_03_12_144426) do
     t.string "name", null: false
     t.string "introduction", null: false
     t.integer "owner_id"
-    t.integer "sport_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sport_id"], name: "index_groups_on_sport_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -149,9 +156,10 @@ ActiveRecord::Schema.define(version: 2023_03_12_144426) do
   add_foreign_key "favorites", "users"
   add_foreign_key "group_chats", "groups"
   add_foreign_key "group_chats", "users"
+  add_foreign_key "group_sports", "groups"
+  add_foreign_key "group_sports", "sports"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "sports"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "users"
   add_foreign_key "post_tags", "posts"

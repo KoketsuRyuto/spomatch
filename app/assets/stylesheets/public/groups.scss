@@ -1,3 +1,22 @@
 // Place all the styles related to the public/groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.group-image {
+  display: flex;
+  justify-content: center;
+}
+
+.card-image-top {
+  object-fit: cover;
+}
+
+.card {
+  border: none;
+  transition:box-shadow 0.3s;
+}
+ 
+.card:hover {
+  box-shadow:0 0 20px rgba(0, 110, 255, 0.5), 0 2px 5px rgba(0, 0, 0, 0.3);
+}

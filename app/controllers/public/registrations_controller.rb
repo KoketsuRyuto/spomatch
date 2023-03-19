@@ -2,13 +2,13 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :users_permitted_parameters, if: :devise_controller?
-  
+
   def after_sign_up_path_for(resource)
     posts_path
   end
-  
+
   protected
-  
+
   def users_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:name])
   end

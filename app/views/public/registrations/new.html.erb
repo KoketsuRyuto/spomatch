@@ -4,7 +4,7 @@
       <div class="card shadow">
         <div class="card-header text-center bg-dark text-white">新規会員登録</div>
         <div class="card-body">
-          <%= form_with model: resource, url: new_user_registration_path do |f| %>
+          <%= form_with model: resource, url: user_registration_path, method: :post do |f| %>
             <%= render "public/shared/error_messages", resource: resource %>
               <div class="form-group row m-2">
                 <%= f.label :name, "ユーザーネーム" %><br/>

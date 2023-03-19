@@ -14,4 +14,12 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["title","body"]
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["favorites", "post_comments", "post_image_attachment", "post_image_blob", "post_tags", "tags", "user"]
+  end
 end

@@ -1,9 +1,10 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md- mx-auto">
+  <%= render "layouts/search", url: posts_path %>
+  <div class="row mt-4">
+    <div class="col-md-2 mx-auto">
       <%= render "layouts/tags", tags: @tags %>
     </div>
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-8 mx-auto">
       <h3 class="border-bottom">SPOMATCH BLOG</h3>
       <% @posts.each do |post| %>
         <table class="table table-sm table-borderless mt-3">

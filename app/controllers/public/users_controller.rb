@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
-    @posts = current_user.posts
+    @user = User.find(params[:id])
+    @posts = @user.posts
     @sports = Sport.all
   end
 

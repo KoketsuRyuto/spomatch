@@ -1,20 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 mt-5 mx-auto">
-      <table class="table table-border-bottm">
-        <tr>
-          <td><%= link_to "新規投稿", new_post_path %></td>
-        </tr>
-        <tr>
-          <td><%= link_to "投稿一覧", posts_path %></td>
-        </tr>
-        <tr>
-          <td><%= link_to "新規グループ作成", new_group_path %></td>
-        </tr>
-        <tr>
-          <td><%= link_to "グループ一覧", groups_path %></td>
-        </tr>
-      </table>
+      <% if @user == current_user %>
+        <table class="table table-border-bottm">
+          <tr>
+            <td><%= link_to "新規投稿", new_post_path %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "投稿一覧", posts_path %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "新規グループ作成", new_group_path %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "グループ一覧", groups_path %></td>
+          </tr>
+        </table>
+      <% end %>
     </div>
     <div class="col-md-6 mt-5 mx-auto">
       <div class="card shadow">
