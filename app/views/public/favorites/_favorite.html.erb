@@ -1,0 +1,9 @@
+<% if post.favorited_by?(current_user) %>
+  <%= link_to post_favorites_path(post), method: :delete, remote: true, style: "color: green;" do %>
+    いいね！ <i class="fas fa-thumbs-up"></i> <%= post.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+    いいね！ <i class="fas fa-thumbs-up"></i> <%= post.favorites.count %>
+  <% end %>
+<% end %>

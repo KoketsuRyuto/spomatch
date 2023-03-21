@@ -26,13 +26,13 @@ class Public::GroupsController < ApplicationController
   end
   
   def join
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @group.users << current_user
     redirect_to group_path(@group)
   end
   
   def withdraw
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
     redirect_to groups_path
   end

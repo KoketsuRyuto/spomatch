@@ -1,19 +1,29 @@
 class Public::GroupChatsController < ApplicationController
+  before_action :set_group
+
   def show
-    @group = Group.find(params[:group_id])
-    @group_chat = GroupChat.new
-    @group_chats = GroupChat.all 
+    @group_chats = @group.group_chats.includes(:user)
+    @group_chat = @group.group_chats.new
   end
   
   def create
-    @group_chat = current_user.group_chat.new(group_chat_params)
-    @group_chat.save
-    redirect_to group_group_chat_path(@group, @group_chat)
+    @group_chat = @group.group_chats.new(group_chat_params)
+    @group_chat.user = current_user
+    if @group_chat.save
+      redirect_to request.referer
+    else
+      @group_chats = @group.group_chats.includes(:user)
+      render 'show'
+    end
   end
   
   private
   
-  def method_name
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
+  
+  def group_chat_params
     params.require(:group_chat).permit(:content)
   end
 end
