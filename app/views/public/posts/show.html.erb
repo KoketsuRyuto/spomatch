@@ -32,14 +32,16 @@
       <div id="favorite-btn_<%= @post.id %>"  class="text-muted">
         <%= render 'public/favorites/favorite', post: @post %>
       </div>
-      <div id="comment_counter">
-        <%= render 'public/post_comments/comment_counter', post: @post %>
-      </div>
-      <div id="comment" class="mt-3">
-        <%= render 'public/post_comments/comment', post: @post %>
-      </div>
-      <div class="mt-3">
-        <%= render 'public/post_comments/form', post: @post, post_comment: @post_comment %>
+      <div id="comment_wrap">
+        <div class="mt-3 comment_counter">
+          <%= render 'public/post_comments/comment_counter', post: @post %>
+        </div>  
+        <div class="mt-3 comment">
+          <%= render 'public/post_comments/comment', post: @post %>
+        </div>
+        <div class="mt-3">
+          <%= render 'public/post_comments/form', post: @post, post_comment: @post_comment %>
+        </div>
       </div>
     </div>
     <div class="col-md-2 mx-auto">
