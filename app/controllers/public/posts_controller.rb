@@ -21,12 +21,19 @@ class Public::PostsController < ApplicationController
     @tags = Tag.all
     @sports = Sport.all
   end
+  
+  def search_tag
+    @post_tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.all
+  end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @sports = Sport.all
     @tags = Tag.all
+    @post_tags = @post.tags
   end
 
   def edit

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create,:destroy]
       resource :favorites, only: [:create,:destroy]
     end
+    get "search_tag" => "posts#search_tag"
+    get "search_sport" => "groups#search_sport"
     resources :groups do
       resources :group_chats, only: [:show,:create]
       get 'join' => 'groups#join'

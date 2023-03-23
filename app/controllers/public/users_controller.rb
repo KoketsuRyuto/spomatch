@@ -3,6 +3,9 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @sports = Sport.all
+    @tags = Tag.all
+    @favorite = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorites = Post.find(@favorite)
   end
 
   def edit

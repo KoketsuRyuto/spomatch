@@ -1,7 +1,12 @@
-<table class="table align-middle">
-  <% sports.each do |sport| %>
-    <tr>
-      <td class="text-center"><%= link_to sport.name, "" %></td>
-    </tr>
-  <% end %>
+<table class="table table-hover table-bordered align-middle">
+  <thead>
+    <th class="text-center">スポーツ一覧</th>
+  </thead>
+  <tbody>
+    <% sports.each do |sport| %>
+      <tr>
+        <td class="text-center"><%= link_to sport.name, search_sport_path(sport_id: sport.id), class:"text-dark" %><%= "(#{sport.groups.count})" %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

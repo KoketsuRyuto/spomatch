@@ -1,0 +1,18 @@
+<div class="container">
+  <h5>ジャンルが<%=@sport.name%>のグループ一覧</h5>
+  <!--タグリスト-->
+  <% @group_sports.each do |group|%>
+    <%=link_to group.name,search_sport_path(tag_id: group.id) %>
+    <%="(#{group.groups.count})" %>
+  <% end %>
+  <!--グループの詳細表示-->
+  <% @groups.each do |group| %>
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">
+          <%=link_to group_path(group.id) do %><%= group.name %><% end %>
+        </h6>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
-  
+
   def new
     @group = Group.new
   end
@@ -20,17 +20,23 @@ class Public::GroupsController < ApplicationController
     @groups = Group.all
   end
 
+  def search_sport
+    @group_sports = Sport.all
+    @sport = Sport.find(params[:sport_id])
+    @groups = @sport.groups.all
+  end
+
   def show
     @group = Group.find(params[:id])
     @users = @group.users
   end
-  
+
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
     redirect_to group_path(@group)
   end
-  
+
   def withdraw
     @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
@@ -40,7 +46,7 @@ class Public::GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
   end
-  
+
   def update
     if @group.update(update_params)
       redirect_to groups_path
@@ -48,7 +54,7 @@ class Public::GroupsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     Group.find(params[:id]).destroy
     redirect_to groups_path
@@ -57,13 +63,13 @@ class Public::GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name,:introduction,:owner_id,sport_ids: [])
+    params.require(:group).permit(:name,:introduction,:group_image,:owner_id,sport_ids: [])
   end
-  
+
   def update_params
-    params.require(:group).permit(:name,:introduction,sport_ids: [])
+    params.require(:group).permit(:name,:introduction,:group_image,sport_ids: [])
   end
-  
+
   def ensure_correct_user
     @group = Group.find(params[:id])
     unless @group.owner_id == current_user.id

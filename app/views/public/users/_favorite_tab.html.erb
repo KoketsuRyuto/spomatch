@@ -1,0 +1,15 @@
+<% if favorites.any? %>
+  <% favorites.each do |favorite| %>
+    <table class="table table-sm table-borderless mt-3">
+      <tr>
+        <td class="text-right"><%= link_to (favorite.user) do %><%= image_tag favorite.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
+        <td>
+          <%= link_to favorite.title, post_path(favorite) %><br>
+          <%= favorite.body.truncate(20) %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+<% else %>
+  <h6 class="m-5">いいねした投稿がまだありません</h6>
+<% end %>
