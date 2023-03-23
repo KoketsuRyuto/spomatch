@@ -3,7 +3,7 @@
     <div class="col-md-12 mx-auto">
       <h5 class="text-center">会員情報詳細</h5>
       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
-        <table class="table mt-4">
+        <table class="table mt-4 mx-auto" style="width: 70%;">
           <tr class="text-center">
             <th>ID</th>
             <th>ユーザーネーム</th>
@@ -36,16 +36,18 @@
       <% end %>
       <div class="mt-5">
         <h5 class="text-center">投稿一覧</h5>
-        <table class="teble mt-4 mx-auto">
-          <% @posts.each do |post| %>
-            <tr class="border-bottom">
-              <td>
-                <p><%= link_to post.title, post_path(post) %></p>
-                <p><%= post.body.truncate(20) %></p>
-              </td>
-              <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
-            </tr>
-          <% end %>
+        <table class="teble mt-4 mx-auto" style="width: 60%;">
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr class="border-bottom">
+                <td>
+                  <p><%= link_to post.title, admin_post_path(post) %></p>
+                  <p><%= post.body.truncate(30) %></p>
+                </td>
+                <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
       </div>
     </div>

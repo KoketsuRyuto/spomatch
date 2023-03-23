@@ -4,7 +4,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   before_action :users_permitted_parameters, if: :devise_controller?
 
   def after_sign_up_path_for(resource)
-    posts_path
+    user_path(resource)
   end
 
   protected

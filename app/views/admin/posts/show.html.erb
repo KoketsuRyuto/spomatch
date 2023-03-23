@@ -1,2 +1,38 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row mt-5 mx-auto">
+    <div class="col-md-8 mx-auto">
+      <h4><%= @post.user.name %>さんの投稿詳細</h4>
+      <div class="card mt-4" style="width: 70%;">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <%= image_tag @post.user.get_profile_image(100,100), class:"card-image-top" %>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <div class="card-title"><h5><%= link_to @post.user.name, admin_user_path(@post), class:"text-dark" %></h5></div>
+              <p class="card-text"><small class="text-muted"><%= @post.set_date %></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-title mt-4"> 
+        <h4 class="border-bottom"><%= @post.title %></h4>
+      </div>
+      <div class="post-body mt-3">
+        <%= simple_format(@post.body) %>
+      </div>
+      <div class="tags mt-5">
+        <% @post_tags.each do |tag| %>
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id), class:"btn btn-sm btn-info mx-1" %>
+        <% end %>
+      </div>
+      <hr width=100%>
+      <div class="favorites mt-3">
+        <i class="fas fa-thumbs-up"></i> いいね <%= @post.favorites.count %>件
+      </div>
+      <div class="comment mt-3">
+        <p class="border-bottom"><i class="fas fa-comment-dots" style="color: #1e90ff;"></i> コメント <%= @post.post_comments.count %>件</p>
+      </div>
+    </div>
+  </div>
+</div>

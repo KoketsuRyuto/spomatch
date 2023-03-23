@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-2 mt-5 mx-auto">
       <% if @user == current_user %>
+      <!--条件分岐をしてcurrent_userだった場合は新規投稿などのアクションが行えるように-->
         <table class="table table-hover table-bordered align-middle">
           <tbody class="text-center text-dark">
             <tr>
@@ -29,7 +30,11 @@
             <div class="col-md-2 mx-auto"></div>
             <div class="col-md-4 mx-auto align-middle">
               <p class="text-center">
-                <%= image_tag @user.get_profile_image(100,100), class:"card-image-top rounded-circle" %>
+                <% unless @user.profile_image.attached? %>
+                  <%= image_tag "no_image.png", class:"card-image-top rounded-circle", style:"width: 100px; height: 100px;" %>
+                <% else %>
+                  <%= image_tag @user.get_profile_image(100,100), class:"card-image-top rounded-circle" %>
+                <% end %>
               </p>
             </div>
             <div class="col-md-2 m-auto">
@@ -48,11 +53,13 @@
             </li>
           </ul>
           <div class="tab-content border">
+            <!--ユーザーの投稿を表示-->
             <div class="tab-pane active" id="post" role="tabpanel">
               <div class="post-body">
                 <%= render 'post_tab', posts: @posts %>
               </div>
             </div>
+            <!--ユーザーがいいねした投稿を表示-->
             <div class="tab-pane" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
               <div class="favorite-body">
                 <%= render 'favorite_tab', favorites: @favorites %>
@@ -62,6 +69,7 @@
         </div>
       </div>
     </div>
+    <!--スポーツのジャンルを表示-->
     <div class="col-md-2 mt-5 mx-auto">
       <%= render 'layouts/sports', sports: @sports %>
     </div>
