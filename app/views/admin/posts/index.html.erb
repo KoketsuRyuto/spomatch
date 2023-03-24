@@ -7,7 +7,8 @@
           <tr>
             <th>ID</th>
             <th>ユーザーネーム</th>
-            <th>投稿</th>
+            <th>タイトル</th>
+            <th>本文</th>
           </tr>
         </thead>
         <tbody class="text-center">
@@ -15,10 +16,8 @@
             <tr>
               <td class="align-middle"><%= post.user.id %></td>
               <td class="align-middle"><%= link_to post.user.name, admin_user_path(post) %></td>
-              <td class="align-middle">
-                <%= link_to post.title, admin_post_path(post) %><br>
-                <%= post.body.truncate(20) %>
-              </td>
+              <td class="align-middle"><%= link_to post.title, admin_post_path(post) %></td>
+              <td><%= post.body.truncate(20) %></td>
             </tr>
           <% end %>
         </tbody>

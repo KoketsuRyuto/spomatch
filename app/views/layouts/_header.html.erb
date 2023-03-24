@@ -11,6 +11,7 @@
       <div class="navbar">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <% if user_signed_in? %>
+          <!--ユーザーがログインしている場合-->
             <ul class="navbar-nav ml-auto">
               <li><%= link_to about_path, class: "h6 mr-3 text-white" do %>About<% end %></li>
               <li><%= link_to user_path(current_user), class: "h6 mr-3 text-white" do %>マイページ<% end %></li>
@@ -18,15 +19,18 @@
               <li><%= link_to destroy_user_session_path, method: :delete, class: "h6 mr-3 text-white" do %>ログアウト<% end %></li>
             </ul>
           <% elsif admin_signed_in? %>
+          <!--管理者側でログインしている場合-->
             <ul class="navbar-nav ml-auto">
               <li><%= link_to about_path, class: "h6 mr-3 text-white" do %>About<% end %></li>
               <li><%= link_to admin_posts_path, class: "h6 mr-3 text-white" do %>投稿一覧<% end %></li>
+              <li><%= link_to admin_post_comments_path, class: "h6 mr-3 text-white" do %>コメント一覧<% end %></li>
               <li><%= link_to admin_path, class: "h6 mr-3 text-white" do %>会員一覧<% end %></li>
               <li><%= link_to admin_sports_path, class: "h6 mr-3 text-white" do %>スポーツ一覧<% end %></li>
               <li><%= link_to admin_tags_path, class: "h6 mr-3 text-white" do %>タグ一覧<% end %></li>
               <li><%= link_to destroy_admin_session_path, method: :delete, class: "h6 mr-3 text-white" do %>ログアウト<% end %></li>
             </ul>
           <% else %>
+          <!--まだログインされていない場合-->
             <ul class="navbar-nav ml-auto">
               <li><%= link_to about_path, class: "h6 mr-3 text-white" do %>About<% end %></li>
               <li><%= link_to posts_path, class: "h6 mr-3 text-white" do %>投稿一覧<% end %></li>

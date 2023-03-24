@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 mx-auto">
+      <h5 class="border-bottom text-center">コメント詳細</h5>
+      <div>
+        <label class="border-bottom h5 mt-2">ユーザー情報</label>
+        <div class="profile-image mt-2">
+          <label class="border-bottom">
+            <%= link_to admin_user_path(@post_comment) do %> <%= image_tag @post_comment.user.get_profile_image(40,40), class:"rounded-circle" %> <%= @post_comment.user.name %><% end %>
+          </label>
+        </div>
+        <label class="border-bottom h5 mt-2">コメント内容</label>
+        <div class="comment-body mt-2 border-bottom">
+          <%= simple_format(@post_comment.comment) %>
+        </div>
+        <%= link_to "削除", admin_post_comment_path(@post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-secondary my-4 px-5" %>
+      </div>
+    </div>
+  </div>
+</div>

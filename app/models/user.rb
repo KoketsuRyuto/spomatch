@@ -16,4 +16,12 @@ class User < ApplicationRecord
   def get_profile_image(width,height)
     profile_image.variant(resize_to_fill: [width,height]).processed
   end
+  # ゲストユーザーでのログイン時に使用
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      # SecureRandomでランダムな文字列を生成してくれる
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+    end
+  end
 end

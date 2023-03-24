@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   devise_for :admins, controllers: {
     sessions: "admin/sessions"
@@ -13,9 +17,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show,:edit,:update]
     resources :sports, only: [:index,:create,:edit,:update,:destroy]
     resources :tags, only: [:index,:create,:edit,:update]
-    resources :posts, only: [:index,:show,:destroy] do
-      resources :post_comments, only: [:index,:destroy]
-    end
+    resources :posts, only: [:index,:show,:destroy]
+    resources :post_comments, only: [:index,:show,:destroy]
   end
 
   scope module: :public do
