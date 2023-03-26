@@ -1,2 +1,2 @@
-$('#group_chats').append("<p style="text-align: right;"><%= @group_chat.content %></p>");
+$('.chat-body').html("<%= j(render 'chats', group_chats: @group_chats) %>");
 $('#group_chat_content').val("")

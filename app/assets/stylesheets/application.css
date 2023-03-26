@@ -32,6 +32,7 @@ main {
 
 header {
   background-color: #848282;
+  font-family: "Impact", sans-serif;
 }
 
 header .heading {
@@ -43,7 +44,8 @@ header a {
 }
 
 .navbar-nav li {
-  margin: 0 15px;
+  margin: 0 25px;
+  font-size:  20px
 }
 
 footer {

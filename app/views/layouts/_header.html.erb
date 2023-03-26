@@ -11,28 +11,28 @@
           <!--ユーザーがログインしている場合-->
             <ul class="navbar-nav">
               <li><%= link_to about_path do %>About<% end %></li>
-              <li><%= link_to user_path(current_user) do %>マイページ<% end %></li>
-              <li><%= link_to posts_path do %>投稿一覧<% end %></li>
-              <li><%= link_to destroy_user_session_path, method: :delete do %>ログアウト<% end %></li>
+              <li><%= link_to user_path(current_user) do %>Mypage<% end %></li>
+              <li><%= link_to posts_path do %>Post<% end %></li>
+              <li><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
             </ul>
           <% elsif admin_signed_in? %>
           <!--管理者側でログインしている場合-->
             <ul class="navbar-nav ml-auto">
               <li><%= link_to about_path do %>About<% end %></li>
-              <li><%= link_to admin_posts_path do %>投稿一覧<% end %></li>
-              <li><%= link_to admin_post_comments_path do %>コメント一覧<% end %></li>
-              <li><%= link_to admin_path do %>会員一覧<% end %></li>
-              <li><%= link_to admin_sports_path do %>スポーツ一覧<% end %></li>
-              <li><%= link_to admin_tags_path do %>タグ一覧<% end %></li>
-              <li><%= link_to destroy_admin_session_path, method: :delete do %>ログアウト<% end %></li>
+              <li><%= link_to admin_posts_path do %>Post<% end %></li>
+              <li><%= link_to admin_post_comments_path do %>Comments<% end %></li>
+              <li><%= link_to admin_path do %>Users<% end %></li>
+              <li><%= link_to admin_sports_path do %>Sport<% end %></li>
+              <li><%= link_to admin_tags_path do %>Tag<% end %></li>
+              <li><%= link_to destroy_admin_session_path, method: :delete do %>Log out<% end %></li>
             </ul>
           <% else %>
           <!--まだログインされていない場合-->
             <ul class="navbar-nav ml-auto">
               <li><%= link_to about_path do %>About<% end %></li>
-              <li><%= link_to posts_path do %>投稿一覧<% end %></li>
-              <li><%= link_to new_user_registration_path do %>新規登録<% end %></li>
-              <li><%= link_to new_user_session_path do %>ログイン<% end %></li>
+              <li><%= link_to posts_path do %>Post<% end %></li>
+              <li><%= link_to new_user_registration_path do %>Sign in<% end %></li>
+              <li><%= link_to new_user_session_path do %>Log in<% end %></li>
             </ul>
           <% end %>
         </div>

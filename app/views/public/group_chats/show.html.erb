@@ -1,6 +1,7 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-2">
+  <div class="errors"><%= render 'public/shared/error_messages', resource: @group_chat %></div>
+  <div class="row">
+    <div class="col-md-2 mt-3">
       <h4 class="text-center">メンバー</h4>
       <ul>
         <% @group.users.each do |user| %>
@@ -9,30 +10,13 @@
       </ul>
     </div>
     <div class="col-md-8 mx-auto">
-      <div class="group-title"><%= @group.name %></div>
+      <div class="group-title mt-3"><%= @group.name %></div>
       <div id="group_chats">
         <div class="chat-body">
-        <% @group_chats.each do |group_chat| %>
-          <% if group_chat.user_id == current_user.id %>
-            <div class="my-comment">
-              <p><%= group_chat.content %></p>
-            </div>
-          <% else %>
-            <div class="fukidashi">
-              <div class="face-icon">
-                <%= image_tag group_chat.user.get_profile_image(50,50), class:"face-image" %>
-              </div>
-              <div class="chatting">
-                <div class="says">
-                  <p><%= group_chat.content %></p>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+          <%= render 'chats', group_chats: @group_chats %>
         </div>
         <div class="chat-form">
-          <%= form_with model: @group_chat ,url: group_group_chats_path, method: :post do |f| %>
+          <%= form_with model: @group_chat ,url: group_group_chats_path, method: :post, local: false do |f| %>
             <div class="row mx-auto">
               <div class="col-md-11 p-0 chat-text">
                 <%= f.text_field :content, placeholder: 'メッセージを入力してください', class:"form-control" %>

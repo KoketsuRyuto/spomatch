@@ -9,11 +9,10 @@ class Public::GroupChatsController < ApplicationController
   def create
     @group_chat = @group.group_chats.new(group_chat_params)
     @group_chat.user = current_user
+    @group_chats = @group.group_chats.includes(:user)
     if @group_chat.save
-      redirect_to request.referer
     else
-      @group_chats = @group.group_chats.includes(:user)
-      render 'show'
+      render 'validater'
     end
   end
   

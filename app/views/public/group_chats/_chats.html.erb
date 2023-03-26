@@ -1,0 +1,18 @@
+<% group_chats.each do |group_chat| %>
+  <% if group_chat.user_id == current_user.id %>
+    <div class="my-comment">
+      <p><%= group_chat.content %></p>
+    </div>
+  <% else %>
+    <div class="fukidashi">
+      <div class="face-icon">
+        <%= image_tag group_chat.user.get_profile_image(50,50), class:"face-image" %>
+      </div>
+      <div class="chatting">
+        <div class="says">
+          <p><%= group_chat.content %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
