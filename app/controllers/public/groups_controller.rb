@@ -10,18 +10,18 @@ class Public::GroupsController < ApplicationController
     @group.owner_id = current_user.id
     @group.users << current_user
     if @group.save
-      redirect_to groups_path
+      redirect_to groups_path, notice: "グループの作成に成功しました"
     else
       render 'new'
     end
   end
 
   def index
-    @groups = Group.all
+    @groups = Group.page(params[:page]).per(10)
   end
-
+  # 検索されたスポーツジャンルの一覧を表示するページ
   def search_sport
-    @group_sports = Sport.all
+    @group_sports = Sport.page(params[:page]).per(10)
     @sport = Sport.find(params[:sport_id])
     @groups = @sport.groups.all
   end
@@ -34,13 +34,13 @@ class Public::GroupsController < ApplicationController
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
-    redirect_to group_path(@group)
+    redirect_to group_path(@group), notice: "グループに参加しました"
   end
 
   def withdraw
     @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
-    redirect_to groups_path
+    redirect_to groups_path, notice: "グループを退会しました"
   end
 
   def edit
@@ -48,8 +48,9 @@ class Public::GroupsController < ApplicationController
   end
 
   def update
+    @group = Group.find(params[:id])
     if @group.update(update_params)
-      redirect_to groups_path
+      redirect_to group_path(@group), notice: "グループ情報を更新しました"
     else
       render 'edit'
     end
@@ -57,7 +58,7 @@ class Public::GroupsController < ApplicationController
 
   def destroy
     Group.find(params[:id]).destroy
-    redirect_to groups_path
+    redirect_to groups_path, notice: "グループを削除しました"
   end
 
   private

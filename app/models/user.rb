@@ -13,9 +13,16 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  validates :name, presence: true
+  
   def get_profile_image(width,height)
     profile_image.variant(resize_to_fill: [width,height]).processed
   end
+  
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+  
   # ゲストユーザーでのログイン時に使用
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

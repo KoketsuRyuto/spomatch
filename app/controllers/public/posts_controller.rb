@@ -7,23 +7,23 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "投稿に成功しました"
     else
-      render 'new'
+      render :new
     end
-    @post.errors
   end
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).page(params[:page]).per(10)
 
     @tags = Tag.all
     @sports = Sport.all
   end
   
+  # 投稿タグの検索結果を表示するページ
   def search_tag
-    @post_tags = Tag.all
+    @post_tags = Tag.page(params[:page]).per(10)
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.all
   end
@@ -41,16 +41,17 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    if Post.find(params[:id]).update(update_params)
-      redirect_to post_path(params[:id])
+    @post = Post.find(params[:id])
+    if @post.update(update_params)
+      redirect_to post_path(@post), notice: "投稿をしました"
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
     Post.find(params[:id]).destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: "投稿を削除しました"
   end
 
   private
@@ -60,6 +61,6 @@ class Public::PostsController < ApplicationController
   end
 
   def update_params
-    params.require(:post).permit(:title,:body,)
+    params.require(:post).permit(:title,:body, tag_ids: [])
   end
 end

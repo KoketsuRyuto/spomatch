@@ -2,10 +2,11 @@
   <% favorites.each do |favorite| %>
     <table class="table table-sm table-borderless mt-3">
       <tr>
-        <td class="text-right"><%= link_to (favorite.user) do %><%= image_tag favorite.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
+        <td class="text-right align-middle"><%= link_to (favorite.user) do %><%= image_tag favorite.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
         <td>
           <%= link_to favorite.title, post_path(favorite) %><br>
-          <%= favorite.body.truncate(20) %>
+          <%= favorite.body.truncate(30) %><br>
+          <small class="text-muted"><%= favorite.set_date %></small>
         </td>
       </tr>
     </table>

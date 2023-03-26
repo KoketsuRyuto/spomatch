@@ -2,14 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.about-visual {
-  width: 70%;
-  height: 300px;
-  margin: auto;
-  margin-top: 40px;
+.wrapper {
+  width: 100%;
   background-image: image-url("soccer.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+}
+
+.wrapper .container{
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  max-width: 1000px;
+  margin: 0px auto;
+  padding: 150px 0px;
+  height: 80vh;
 }
 
 .top-visual {

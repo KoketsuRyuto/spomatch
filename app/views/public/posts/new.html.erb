@@ -3,18 +3,11 @@
     <div class="col-md-8 mx-auto">
       <div class="card shadow">
         <div class="card-header bg-dark text-white text-center">新規投稿</div>
-        <% if @post.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@post.errors.count, "error") %> が発生しました：</h2>
-            <ul>
-              <% @post.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'public/shared/error_messages', resource: @post %>
         <div class="card-body">
-          <%= render 'post_form', post: @post %>
+          <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+            <%= render 'post_form', f: f %>
+          <% end %>
         </div>
       </div>
     </div>

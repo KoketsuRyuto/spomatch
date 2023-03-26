@@ -3,18 +3,11 @@
     <div class="col-md-8 mx-auto">
       <div class="card shadow">
         <div class="card-header bg-dark text-white text-center">新規グループ作成</div>
-        <% if @group.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@group.errors.count, "error") %> が発生しました：</h2>
-            <ul>
-              <% @group.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'public/shared/error_messages', resource: @group %>
         <div class="card-body">
-          <%= render "group_form", group: @group %>
+          <%= form_with model: @group, url: groups_path, method: :post do |f| %>
+            <%= render "group_form", f: f %>
+          <% end %>
         </div>
       </div>
     </div>

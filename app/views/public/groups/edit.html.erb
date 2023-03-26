@@ -1,10 +1,13 @@
 <div class="container">
-  <div class="row mt-5 mx-auto">
-    <div class="col-md-7 mx-auto">
+  <div class="row mt-5">
+    <div class="col-md-8 mx-auto">
       <div class="card shadow">
-        <h5 class="card-header bg-dark text-center text-white">グループ編集</h5>
-        <div class="card-body mx-5 mt-3">
-          <%= render 'group_form', group: @group %>
+        <div class="card-header bg-dark text-white text-center">グループ編集</div>
+        <%= render 'public/shared/error_messages', resource: @group %>
+        <div class="card-body">
+          <%= form_with model: @group, url: group_path(@group), method: :patch do |f| %>
+            <%= render "group_form", f: f %>
+          <% end %>
         </div>
       </div>
     </div>

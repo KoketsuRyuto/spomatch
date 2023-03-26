@@ -1,7 +1,7 @@
 class Admin::PostCommentsController < ApplicationController
   def index
     @q = PostComment.ransack(params[:q])
-    @post_comments = @q.result(distinct: true)
+    @post_comments = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def show

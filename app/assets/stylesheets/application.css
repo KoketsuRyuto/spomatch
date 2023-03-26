@@ -14,10 +14,45 @@
  *= require_self
  */
 
+ a {
+  text-decoration: none;
+}
+
 .search-form {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 10px;
   width: 100%;
+}
+
+main {
+  padding-bottom: 100px;
+}
+
+header {
+  background-color: #848282;
+}
+
+header .heading {
+  font-size: 32px;
+}
+
+header a {
+  color: white;
+}
+
+.navbar-nav li {
+  margin: 0 15px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background-color: #848282;
 }

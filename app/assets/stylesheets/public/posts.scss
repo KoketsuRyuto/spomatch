@@ -2,3 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.post-list {
+  height: 400px;
+  overflow-y: scroll;
+  margin-top: 20px;
+}

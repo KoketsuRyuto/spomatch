@@ -2,10 +2,11 @@
   <% posts.each do |post| %>
     <table class="table table-sm table-borderless mt-3">
       <tr>
-        <td class="text-right"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
+        <td class="text-right align-middle"><%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
         <td>
           <%= link_to post.title, post_path(post) %><br>
-          <%= post.body.truncate(20) %>
+          <%= post.body.truncate(30) %><br>
+          <small class="text-muted"><%= post.set_date %></small>
         </td>
       </tr>
     </table>

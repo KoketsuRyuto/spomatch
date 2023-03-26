@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
     <div class="col-md-2 mt-5 mx-auto">
       <% if @user == current_user %>
@@ -23,7 +23,7 @@
         <%= render 'layouts/tags', tags: @tags %>
       <% end %>
     </div>
-    <div class="col-md-6 mt-5 mx-auto">
+    <div class="col-md-8 mt-5 mx-auto">
       <div class="card shadow">
         <div class="card-body">
           <div class="row">
@@ -37,9 +37,9 @@
                 <% end %>
               </p>
             </div>
-            <div class="col-md-2 m-auto">
+            <div class="col-md-2 m-auto p-0">
               <% if @user == current_user %>
-                <p><%= link_to "編集", edit_user_path(@user), class:"btn btn-secondary" %></p>
+                <p class="text-center mb-0"><%= link_to "編集", edit_user_path(@user), class:"btn btn-secondary px-3" %></p>
               <% end %>
             </div>
           </div>

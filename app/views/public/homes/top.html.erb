@@ -8,7 +8,7 @@
     </p>
   </div>
 </div>
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5">
     <div class="col-md-2 mx-auto">
       <%= render "layouts/tags", tags: @tags %>
@@ -29,6 +29,7 @@
             </table>
           <% end %>
         </div>
+        <%= link_to 'すべての投稿を見る', posts_path %>
       </div>
       <div class="mx-auto mt-5">
         <h4 class="border-bottom">新規グループ</h4>
@@ -45,6 +46,7 @@
             </table>
           <% end %>
         </div>
+        <%= link_to 'グループの一覧を見る', groups_path %>
       </div>
     </div>
     <div class="col-md-2 mx-auto">

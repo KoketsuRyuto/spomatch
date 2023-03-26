@@ -1,18 +1,33 @@
-<div class="container">
-  <h5>ジャンルが<%=@sport.name%>のグループ一覧</h5>
-  <!--タグリスト-->
-  <% @group_sports.each do |group|%>
-    <%=link_to group.name,search_sport_path(tag_id: group.id) %>
-    <%="(#{group.groups.count})" %>
-  <% end %>
-  <!--グループの詳細表示-->
-  <% @groups.each do |group| %>
-    <div class="card">
-      <div class="card-body">
-        <h6 class="card-title">
-          <%=link_to group_path(group.id) do %><%= group.name %><% end %>
-        </h6>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h5>ジャンルが<%=@sport.name%>のグループ一覧</h5>
+      <!--タグリスト-->
+      <div class="sport-list">
+        <label class="mt-3 border-bottom">
+          <% @group_sports.each do |group|%>
+            <%=link_to group.name,search_sport_path(tag_id: group.id) %>
+            <%="(#{group.groups.count})" %>
+          <% end %>
+        </label>
+      </div>
+      <!--グループの詳細表示-->
+      <div class="group-list card">
+        <div class="card-body">
+          <% @groups.each do |group| %>
+            <table class="table table-sm table-borderless">
+              <tr class="border-bottom">
+                <td>
+                  <%= link_to group.name, group_path(group), style:"color: #212529;" %><br>
+                  <small>ジャンル名： <%= group.sports.pluck(:name).join("・") %></small><br>
+                  <small>メンバー： <%= group.group_users.count %></small>
+                </td>
+                <td class="text-right align-middle"><%= image_tag group.get_group_image(50,50), class:"rounded-circle" %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
