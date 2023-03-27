@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5">
     <dic class="col-md-12 col-lg-8 mx-auto">
-      <h4>ユーザーの投稿一覧</h4>
-      <table class="table mt-4" style="width: 100%;">
+      <h2 class="text-center">ユーザーの投稿一覧</h2>
+      <%= render "layouts/search_post",  url: admin_posts_path %>
+      <table class="table mt-3" style="width: 100%;">
         <thead class="text-center">
           <tr>
             <th>ID</th>

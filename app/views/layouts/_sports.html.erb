@@ -5,7 +5,12 @@
   <tbody>
     <% sports.each do |sport| %>
       <tr>
-        <td class="text-center"><%= link_to sport.name, search_sport_path(sport_id: sport.id) %><%= "(#{sport.groups.count})" %></td>
+        <td class="text-center">
+          <%= link_to sport.name, search_sport_path(sport_id: sport.id) %>
+          <% unless sport.groups.count.zero? %>
+            <%= "(#{sport.groups.count})" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

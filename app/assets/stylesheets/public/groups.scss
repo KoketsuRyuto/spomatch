@@ -2,7 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
+.group-index {
+  height: 600px;
+  width: 100%;
+  overflow: auto;
+  padding: 15px;
+  margin-top: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
 
 .card-image {
   width: 100%;

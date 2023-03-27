@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5 mx-auto">
     <div class="col-md-8 mx-auto">
       <h4><%= @post.user.name %>さんの投稿詳細</h4>
@@ -7,15 +7,18 @@
           <div class="col-md-3">
             <%= image_tag @post.user.get_profile_image(100,100), class:"card-image-top" %>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-6">
             <div class="card-body">
               <div class="card-title"><h5><%= link_to @post.user.name, admin_user_path(@post), class:"text-dark" %></h5></div>
               <p class="card-text"><small class="text-muted"><%= @post.set_date %></small></p>
             </div>
           </div>
+          <div class="col-md-3 my-auto">
+            <%= link_to '投稿削除', admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger px-2" %>
+          </div>
         </div>
       </div>
-      <div class="post-title mt-4"> 
+      <div class="post-title mt-4">
         <h4 class="border-bottom"><%= @post.title %></h4>
       </div>
       <div class="post-body mt-3">

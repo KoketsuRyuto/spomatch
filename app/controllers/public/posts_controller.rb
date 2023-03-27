@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index,:search_tag]
+  before_action :ensure_correct_post, only: [:edit,:update,:destroy]
+
   def new
     @post = Post.new
   end
@@ -20,7 +23,7 @@ class Public::PostsController < ApplicationController
     @tags = Tag.all
     @sports = Sport.all
   end
-  
+
   # 投稿タグの検索結果を表示するページ
   def search_tag
     @post_tags = Tag.page(params[:page]).per(10)
@@ -62,5 +65,12 @@ class Public::PostsController < ApplicationController
 
   def update_params
     params.require(:post).permit(:title,:body, tag_ids: [])
+  end
+  
+  def ensure_correct_post
+    @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_to post_path(current_user)
+    end
   end
 end

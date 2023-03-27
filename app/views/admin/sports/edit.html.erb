@@ -2,7 +2,9 @@
   <div class="row mt-5">
     <div class="col-md-8 mx-auto">
       <h4 class="text-center">スポーツ編集</h4>
-      <%= render "form", sport: @sport %>
+      <%= form_with model: @sport, url: admin_sport_path(@sport), method: :patch do |f| %>
+        <%= render "form", f: f %>
+      <% end %>
     </div>
   </div>
 </div>

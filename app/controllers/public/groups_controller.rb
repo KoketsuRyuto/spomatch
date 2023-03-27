@@ -1,4 +1,5 @@
 class Public::GroupsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :search_sport]
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def new

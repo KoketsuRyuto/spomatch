@@ -9,9 +9,6 @@
               <td><%= link_to "新規投稿", new_post_path, class:"text-dark" %></td>
             </tr>
             <tr>
-              <td><%= link_to "投稿一覧", posts_path, class:"text-dark" %></td>
-            </tr>
-            <tr>
               <td><%= link_to "新規グループ作成", new_group_path, class:"text-dark" %></td>
             </tr>
             <tr>
@@ -23,18 +20,14 @@
         <%= render 'layouts/tags', tags: @tags %>
       <% end %>
     </div>
-    <div class="col-md-8 mt-5 mx-auto">
+    <div class="col-md-9 mt-5 mx-auto">
       <div class="card shadow">
         <div class="card-body">
           <div class="row">
             <div class="col-md-2 mx-auto"></div>
             <div class="col-md-4 mx-auto align-middle">
               <p class="text-center">
-                <% unless @user.profile_image.attached? %>
-                  <%= image_tag "no_image.png", class:"card-image-top rounded-circle", style:"width: 100px; height: 100px;" %>
-                <% else %>
-                  <%= image_tag @user.get_profile_image(100,100), class:"card-image-top rounded-circle" %>
-                <% end %>
+                <%= image_tag @user.get_profile_image(100,100), class:"card-image-top rounded-circle" %>
               </p>
             </div>
             <div class="col-md-2 m-auto p-0">
@@ -68,10 +61,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <!--スポーツのジャンルを表示-->
-    <div class="col-md-2 mt-5 mx-auto">
-      <%= render 'layouts/sports', sports: @sports %>
     </div>
   </div>
 </div>

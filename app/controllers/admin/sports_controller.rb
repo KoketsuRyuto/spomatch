@@ -1,4 +1,6 @@
 class Admin::SportsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @sport = Sport.new
     @sports = Sport.all

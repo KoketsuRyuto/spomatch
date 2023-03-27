@@ -1,24 +1,28 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5">
     <div class="col-md-9 col-lg-7 mx-auto">
       <h4 class="border-bottom">グループ一覧</h4>
-      <% @groups.each do |group| %>
-        <div class="card card-index mt-4">
-          <div class="row g-0">
-            <div class="col-md-3">
-              <%= image_tag group.get_group_image(100,100), class:"card-image img-fluid" %>
-            </div>
-            <div class="col-md-9">
-              <div class="card-body d-flex flex-column">
-                <h3><%= link_to group.name, group_path(group), style:"color: #212529;" %></h3>
-                <h6 class="text-muted"><small>ジャンル名： <%= group.sports.pluck(:name).join("・") %></small></h6>
-                <h6 class="text-muted"><small>メンバー： <%= group.group_users.count %></small></h6>
+      <div class="group-index">
+        <% @groups.each do |group| %>
+          <div class="card card-index mt-4">
+            <div class="row g-0">
+              <div class="col-md-3">
+                <%= image_tag group.get_group_image(100,100), class:"card-image img-fluid" %>
+              </div>
+              <div class="col-md-9">
+                <div class="card-body d-flex flex-column py-2 my-auto">
+                  <h3><%= link_to group.name, group_path(group), style:"color: #212529;" %></h3>
+                  <h6 class="text-muted"><small>ジャンル名： <%= group.sports.pluck(:name).join("・") %></small></h6>
+                  <h6 class="text-muted"><small>メンバー： <%= group.group_users.count %></small></h6>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-      <%= paginate @groups %>
+        <% end %>
+      </div>
+      <div class="pagination mt-2 justify-content-center">
+        <%= paginate @groups %>
+      </div>
     </div>
   </div>
 </div>

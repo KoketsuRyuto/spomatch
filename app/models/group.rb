@@ -7,14 +7,12 @@ class Group < ApplicationRecord
   
   has_one_attached :group_image
   
-  with_options presence: true do
-   validates :name
-   validates :introduction
-   validates :group_image
-  end
+  validates :name, presence: true, length: {maximum: 30}
+  validates :introduction, presence: true, length: {maximum: 100}
+  validates :group_image, presence: true
   
   def get_group_image(width,height)
-    group_image.variant(resize_to_fill: [width,height]).processed
+    group_image.variant(resize_to_fill: [width,height])
   end
   
 end

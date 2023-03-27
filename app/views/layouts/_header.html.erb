@@ -13,6 +13,7 @@
               <li><%= link_to about_path do %>About<% end %></li>
               <li><%= link_to user_path(current_user) do %>Mypage<% end %></li>
               <li><%= link_to posts_path do %>Post<% end %></li>
+              <li><%= link_to groups_path do %>Group<% end %></li>
               <li><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
             </ul>
           <% elsif admin_signed_in? %>

@@ -1,4 +1,6 @@
 class Admin::PostCommentsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @q = PostComment.ransack(params[:q])
     @post_comments = @q.result(distinct: true).page(params[:page]).per(10)

@@ -5,7 +5,12 @@
   <tbody>
     <% tags.each do |tag| %>
       <tr>
-        <td class="text-center"><%= link_to tag.name, search_tag_path(tag_id: tag.id) %><%= "(#{tag.posts.count})" %></td>
+        <td class="text-center">
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+          <% unless tag.posts.count.zero? %>
+            <%= "(#{tag.posts.count})" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
