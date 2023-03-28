@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: {maximum: 30}
   validates :body, presence: true, length: {maximum: 200}
   
+  
   def set_date
     created_at.strftime("%Y/%-m/%-d/ %-H:%M")
   end

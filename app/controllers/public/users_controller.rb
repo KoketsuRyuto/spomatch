@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update,:confilm,:withdraw]
+  before_action :check_guest_user, only: [:edit,:update,:confilm,:withdraw]
   
   def show
     @user = User.find(params[:id])
