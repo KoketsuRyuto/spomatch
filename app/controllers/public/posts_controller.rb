@@ -18,7 +18,13 @@ class Public::PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page]).per(10)
+    if params[:latest]
+      @posts = @q.result(distinct: true).latest.page(params[:page]).per(10)
+    elsif params[:old]
+      @posts = @q.result(distinct: true).old.page(params[:page]).per(10)
+    else
+      @posts = @q.result(distinct: true).page(params[:page]).per(10)
+    end
 
     @tags = Tag.all
     @sports = Sport.all

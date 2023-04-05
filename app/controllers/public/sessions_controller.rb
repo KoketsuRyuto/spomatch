@@ -27,7 +27,7 @@ class Public::SessionsController < Devise::SessionsController
       current_user.post_comments.destroy_all
       # ゲストユーザー自身の投稿を削除する
       current_user.posts.destroy_all
-      # ゲストユーザーの場合、他ユーザーの投稿へのコメントを削除する
+      # ゲストユーザーの場合、他ユーザーの投稿のいいねを削除する
       current_user.favorites.destroy_all
     end
     super

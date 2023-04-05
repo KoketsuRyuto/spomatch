@@ -48,6 +48,10 @@ header a {
   font-size:  20px
 }
 
+.navbar-toggler-icon {
+  background-color: #fff;
+}
+
 footer {
   position: fixed;
   left: 0;

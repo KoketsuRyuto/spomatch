@@ -1,41 +1,37 @@
 <header>
   <h1 class="heading text-center pt-3"><a href="/"><font face="Impact">SPOMATCH</font></a></h1>
-  <nav class="navbar navbar-expand-md">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar mx-auto">
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <% if user_signed_in? %>
-          <!--ユーザーがログインしている場合-->
-            <ul class="navbar-nav">
-              <li><%= link_to about_path do %>About<% end %></li>
-              <li><%= link_to user_path(current_user) do %>Mypage<% end %></li>
-              <li><%= link_to posts_path do %>Post<% end %></li>
-              <li><%= link_to groups_path do %>Group<% end %></li>
-              <li><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
-            </ul>
-          <% elsif admin_signed_in? %>
-          <!--管理者側でログインしている場合-->
-            <ul class="navbar-nav ml-auto">
-              <li><%= link_to about_path do %>About<% end %></li>
-              <li><%= link_to admin_posts_path do %>Post<% end %></li>
-              <li><%= link_to admin_post_comments_path do %>Comments<% end %></li>
-              <li><%= link_to admin_path do %>Users<% end %></li>
-              <li><%= link_to admin_sports_path do %>Sport<% end %></li>
-              <li><%= link_to admin_tags_path do %>Tag<% end %></li>
-              <li><%= link_to destroy_admin_session_path, method: :delete do %>Log out<% end %></li>
-            </ul>
-          <% else %>
-          <!--まだログインされていない場合-->
-            <ul class="navbar-nav ml-auto">
-              <li><%= link_to about_path do %>About<% end %></li>
-              <li><%= link_to posts_path do %>Post<% end %></li>
-              <li><%= link_to new_user_registration_path do %>Sign in<% end %></li>
-              <li><%= link_to new_user_session_path do %>Log in<% end %></li>
-            </ul>
-          <% end %>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <!--ユーザーがログインしている場合-->
+              <li class="nav-item"><%= link_to about_path do %>About<% end %></li>
+              <li class="nav-item"><%= link_to user_path(current_user) do %>Mypage<% end %></li>
+              <li class="nav-item"><%= link_to posts_path do %>Post<% end %></li>
+              <li class="nav-item"><%= link_to groups_path do %>Group<% end %></li>
+              <li class="nav-item"><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
+            <% elsif admin_signed_in? %>
+            <!--管理者側でログインしている場合-->
+              <li class="nav-item"><%= link_to about_path do %>About<% end %></li>
+              <li class="nav-item"><%= link_to admin_posts_path do %>Post<% end %></li>
+              <li class="nav-item"><%= link_to admin_post_comments_path do %>Comments<% end %></li>
+              <li class="nav-item"><%= link_to admin_path do %>Users<% end %></li>
+              <li class="nav-item"><%= link_to admin_sports_path do %>Sport<% end %></li>
+              <li class="nav-item"><%= link_to admin_tags_path do %>Tag<% end %></li>
+              <li class="nav-item"><%= link_to destroy_admin_session_path, method: :delete do %>Log out<% end %></li>
+            <% else %>
+            <!--まだログインされていない場合-->
+              <li class="nav-item"><%= link_to about_path do %>About<% end %></li>
+              <li class="nav-item"><%= link_to posts_path do %>Post<% end %></li>
+              <li class="nav-item"><%= link_to new_user_registration_path do %>Sign in<% end %></li>
+              <li class="nav-item"><%= link_to new_user_session_path do %>Log in<% end %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>

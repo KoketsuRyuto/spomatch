@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   
+  
   private
   
   def check_guest_user
