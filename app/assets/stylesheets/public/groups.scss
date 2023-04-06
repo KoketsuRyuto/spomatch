@@ -26,3 +26,9 @@
 .card-index:hover {
   box-shadow: 0 0 20px rgba(0, 110, 255, 0.5), 0 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.group-list {
+  height: 500px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
