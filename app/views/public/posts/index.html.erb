@@ -5,8 +5,8 @@
       <%= render "layouts/tags", tags: @tags %>
     </div>
     <div class="col-md-8 mx-auto">
-      <h3 class="border-bottom">SPOMATCH BLOG</h3>
       <p><%= link_to '新着', posts_path(latest: "true") %> | <%= link_to '古い順', posts_path(old: "true") %></p>
+      <h3 class="border-bottom">SPOMATCH BLOG</h3>
       <% @posts.each do |post| %>
         <table class="table table-sm table-borderless mt-3">
           <tr class="border-bottom">
