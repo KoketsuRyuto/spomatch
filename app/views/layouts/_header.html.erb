@@ -1,8 +1,8 @@
 <header>
   <h1 class="heading text-center pt-3"><a href="/"><font face="Impact">SPOMATCH</font></a></h1>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar mx-auto">
@@ -10,26 +10,42 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <!--ユーザーがログインしている場合-->
-              <li class="nav-item"><%= link_to about_path do %>About<% end %></li>
-              <li class="nav-item"><%= link_to user_path(current_user) do %>Mypage<% end %></li>
-              <li class="nav-item"><%= link_to posts_path do %>Post<% end %></li>
-              <li class="nav-item"><%= link_to groups_path do %>Group<% end %></li>
-              <li class="nav-item"><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
+              <li class="nav-item"><%= link_to about_path, class:"nav-link text-white" do %>About<% end %></li>
+              <li class="nav-item"><%= link_to user_path(current_user), class:"nav-link text-white" do %>Mypage<% end %></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Post
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="<%= posts_path %>">Post List</a>
+                  <a class="dropdown-item" href="<%= new_post_path %>">New Post</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Group
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="<%= groups_path %>">Group List</a>
+                  <a class="dropdown-item" href="<%= new_group_path %>">New Group</a>
+                </div>
+              </li>
+              <li class="nav-item"><%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-white" do %>Log out<% end %></li>
             <% elsif admin_signed_in? %>
             <!--管理者側でログインしている場合-->
-              <li class="nav-item"><%= link_to about_path do %>About<% end %></li>
-              <li class="nav-item"><%= link_to admin_posts_path do %>Post<% end %></li>
-              <li class="nav-item"><%= link_to admin_post_comments_path do %>Comments<% end %></li>
-              <li class="nav-item"><%= link_to admin_path do %>Users<% end %></li>
-              <li class="nav-item"><%= link_to admin_sports_path do %>Sport<% end %></li>
-              <li class="nav-item"><%= link_to admin_tags_path do %>Tag<% end %></li>
-              <li class="nav-item"><%= link_to destroy_admin_session_path, method: :delete do %>Log out<% end %></li>
+              <li class="nav-item"><%= link_to about_path, class:"nav-link text-white" do %>About<% end %></li>
+              <li class="nav-item"><%= link_to admin_posts_path, class:"nav-link text-white" do %>Post<% end %></li>
+              <li class="nav-item"><%= link_to admin_post_comments_path, class:"nav-link text-white" do %>Comments<% end %></li>
+              <li class="nav-item"><%= link_to admin_path, class:"nav-link text-white" do %>Users<% end %></li>
+              <li class="nav-item"><%= link_to admin_sports_path, class:"nav-link text-white" do %>Sport<% end %></li>
+              <li class="nav-item"><%= link_to admin_tags_path, class:"nav-link text-white" do %>Tag<% end %></li>
+              <li class="nav-item"><%= link_to destroy_admin_session_path, method: :delete, class:"nav-link text-white" do %>Log out<% end %></li>
             <% else %>
             <!--まだログインされていない場合-->
-              <li class="nav-item"><%= link_to about_path do %>About<% end %></li>
-              <li class="nav-item"><%= link_to posts_path do %>Post<% end %></li>
-              <li class="nav-item"><%= link_to new_user_registration_path do %>Sign in<% end %></li>
-              <li class="nav-item"><%= link_to new_user_session_path do %>Log in<% end %></li>
+              <li class="nav-item"><%= link_to about_path, class:"nav-link text-white" do %>About<% end %></li>
+              <li class="nav-item"><%= link_to posts_path, class:"nav-link text-white" do %>Post<% end %></li>
+              <li class="nav-item"><%= link_to new_user_registration_path, class:"nav-link text-white" do %>Sign in<% end %></li>
+              <li class="nav-item"><%= link_to new_user_session_path, class:"nav-link text-white" do %>Log in<% end %></li>
             <% end %>
           </ul>
         </div>

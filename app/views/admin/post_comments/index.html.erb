@@ -1,11 +1,14 @@
-<div class="container">
-  <div class="row mt-3">
+<div class="container mb-5">
+  <div class="row mt-5">
     <div class="col-md-8 mx-auto">
+      <h3 class="text-center">コメント一覧</h3>
       <%= render "layouts/search_comment", url: admin_post_comments_path %>
       <table class="table mt-2">
         <thead>
           <tr>
-            <th colspan="3" class="align-middle text-center">投稿一覧</th>
+            <th class="align-middle text-center">ユーザー</th>
+            <th class="align-middle text-center">コメント</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

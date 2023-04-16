@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5">
     <div class="col-md-8 mx-auto">
       <h3 class="text-center">会員情報一覧</h3>
@@ -28,8 +28,8 @@
             </tr>
           <% end %>
         </tbody>
+        <%= paginate @users %>
       </table>
-      <%= paginate @users %>
     </div>
   </div>
 </div>
