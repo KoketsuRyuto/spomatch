@@ -5,7 +5,7 @@ class PostComment < ApplicationRecord
   validates :comment, presence: true, length: {maximum: 30}
   
   def set_date
-    created_at.strftime("%Y/%-m/%-d/ %-H:%M")
+    created_at.strftime("%Y-%-m-%-d %-H:%M")
   end
   
   def self.ransackable_attributes(auth_object = nil)

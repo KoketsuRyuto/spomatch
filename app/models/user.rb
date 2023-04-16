@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name, presence: true
-  
+  validates :introduction, length: {maximum: 100}
+
   def get_profile_image(width,height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/default.png')
@@ -36,7 +37,7 @@ class User < ApplicationRecord
       user.name = "ゲスト"
     end
   end
-  
+
   # ゲストユーザーか判定するメソッド
   def guest?
     name == 'ゲスト'

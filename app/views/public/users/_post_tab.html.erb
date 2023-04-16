@@ -1,17 +1,17 @@
 <% if posts.any? %>
   <% posts.each do |post| %>
-    <table class="table table-sm table-borderless mt-3">
-      <tr>
-        <td class="text-right align-middle" scope="col" style="width: 20%;">
-          <%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %>
-        </td>
-        <td scope="col" style="width: 80%;">
-          <%= link_to post.title, post_path(post) %><br>
-          <%= post.body.truncate(30) %><br>
-          <small class="text-muted"><%= post.set_date %></small>
-        </td>
-      </tr>
-    </table>
+    <article>
+      <div class="post-profile">
+        <%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(20,20), class:"image-top rounded-circle" %><% end %>
+      </div>
+      <div class="post-content mt-2">
+        <h3><%= link_to post.title, post_path(post) %></h3>
+        <p><%= post.body.truncate(30) %></p>
+      </div>
+      <li class="post-status"><%= post.set_date %></li>
+      <li class="post-status"><i class="fas fa-thumbs-up"></i> <%= post.favorites.count %> Likes</li>
+      <li class="post-status"><i class="fas fa-comment-dots"></i> <%= post.post_comments.count%> comments</li>
+    </article>
   <% end %>
 <% else %>
   <h6 class="text-center m-5">投稿がまだありません</h6>
