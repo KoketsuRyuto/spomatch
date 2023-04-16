@@ -1,43 +1,39 @@
 <div class="container mb-5">
   <div class="row">
-    <div class="col-md-9 mt-5 mx-auto">
-      <div class="card shadow">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-2 mx-auto"></div>
-            <div class="col-md-4 mx-auto align-middle">
-              <p class="text-center">
-                <%= image_tag @user.get_profile_image(100,100), class:"card-image-top rounded-circle" %>
-              </p>
-            </div>
-            <div class="col-md-2 m-auto p-0">
-              <% if @user == current_user %>
-                <p class="text-center mb-0"><%= link_to "編集", edit_user_path(@user), class:"btn btn-secondary px-3" %></p>
-              <% end %>
-            </div>
+    <div class="profile-wrapper col-md-4 mt-5 mx-auto">
+      <div class="profile-image text-center">
+        <%= image_tag @user.get_profile_image(150,150), class:"image-top rounded-circle" %>
+      </div>
+      <div class="profile-name">
+        <h6>名前</h6><%= @user.name %>
+      </div>
+      <div class="profile-introduction mt-2">
+        <h6>紹介文</h6><%= simple_format(@user.introduction) %>
+      </div class="profile-edit">
+      <% if @user == current_user %>
+        <%= link_to "編集", edit_user_path(@user), class:"btn btn-secondary px-5 btn-block" %>
+      <% end %>
+    </div>
+    <div class="col-md-8 mt-5 mx-auto">
+      <ul class="nav nav-tabs" id="profile-list" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post" aria-selected="true">投稿</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="false">いいねした投稿</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <!--ユーザーの投稿を表示-->
+        <div class="tab-pane active" id="post" role="tabpanel">
+          <div class="post-body">
+            <%= render 'post_tab', posts: @posts %>
           </div>
-          <h5 class="card-title text-center"><%= @user.name %></h5>
-          <ul class="nav nav-tabs" id="profile-list" role="tablist">
-            <li class="nav-item col-md-6 text-center p-0">
-              <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-controls="post" aria-selected="true">投稿</a>
-            </li>
-            <li class="nav-item col-md-6 text-center p-0">
-              <a class="nav-link" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="false">いいね</a>
-            </li>
-          </ul>
-          <div class="tab-content border">
-            <!--ユーザーの投稿を表示-->
-            <div class="tab-pane active" id="post" role="tabpanel">
-              <div class="post-body">
-                <%= render 'post_tab', posts: @posts %>
-              </div>
-            </div>
-            <!--ユーザーがいいねした投稿を表示-->
-            <div class="tab-pane" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-              <div class="favorite-body">
-                <%= render 'favorite_tab', favorites: @favorites %>
-              </div>
-            </div>
+        </div>
+        <!--ユーザーがいいねした投稿を表示-->
+        <div class="tab-pane" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
+          <div class="favorite-body">
+            <%= render 'favorite_tab', favorites: @favorites %>
           </div>
         </div>
       </div>

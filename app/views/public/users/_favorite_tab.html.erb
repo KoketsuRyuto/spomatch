@@ -1,15 +1,17 @@
 <% if favorites.any? %>
   <% favorites.each do |favorite| %>
-    <table class="table table-sm table-borderless mt-3">
-      <tr>
-        <td class="text-right align-middle" scope="col" style="width: 20%;"><%= link_to (favorite.user) do %><%= image_tag favorite.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %><% end %></td>
-        <td scope="col" style="width: 80%;">
-          <%= link_to favorite.title, post_path(favorite) %><br>
-          <%= favorite.body.truncate(30) %><br>
-          <small class="text-muted"><%= favorite.set_date %></small>
-        </td>
-      </tr>
-    </table>
+    <article>
+      <div class="favorite-profile">
+        <%= link_to (favorite.user) do %><%= image_tag favorite.user.get_profile_image(20,20), class:"image-top rounded-circle" %><% end %>
+      </div>
+      <div class="post-content mt-2">
+        <h3><%= link_to favorite.title, post_path(favorite) %></h3>
+        <p><%= favorite.body.truncate(30) %></p>
+      </div>
+      <li class="favorite-status"><%= favorite.set_date %></li>
+      <li class="favorite-status"><i class="fas fa-thumbs-up"></i> <%= favorite.favorites.count %> Likes</li>
+      <li class="favorite-status"><i class="fas fa-comment-dots"></i> <%= favorite.post_comments.count%> comments</li>
+    </article>
   <% end %>
 <% else %>
   <h6 class="text-center m-5">いいねした投稿がまだありません</h6>

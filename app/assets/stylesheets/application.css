@@ -54,8 +54,8 @@ header a {
 /*スポーツ一覧のCSS*/
 .sports-table {
   display: block;
-  overflow-y: scroll;
-  height: 250px;
+  overflow-y: auto;
+  height: 350px;
   width: 200px;
   border-collapse: collapse;
 }
@@ -70,8 +70,8 @@ header a {
 /*タグ一覧のCSS*/
 .tags-table {
   display: block;
-  overflow-y: scroll;
-  height: 250px;
+  overflow-y: auto;
+  height: 350px;
   border-collapse: collapse;
 }
 

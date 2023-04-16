@@ -19,6 +19,7 @@ class Public::GroupsController < ApplicationController
 
   def index
     @groups = Group.page(params[:page]).per(10)
+    @sports = Sport.all
   end
   # 検索されたスポーツジャンルの一覧を表示するページ
   def search_sport

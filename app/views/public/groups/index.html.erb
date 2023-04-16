@@ -1,6 +1,9 @@
 <div class="container mb-5">
   <div class="row mt-5">
-    <div class="col-md-9 col-lg-7 mx-auto">
+    <div class="col-md-2 mx-auto">
+      <%= render "layouts/sports", sports: @sports %>
+    </div>
+    <div class="col-md-8 mx-auto">
       <h4 class="border-bottom">グループ一覧</h4>
       <div class="group-index">
         <% @groups.each do |group| %>

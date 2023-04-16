@@ -6,3 +6,27 @@
   max-height: 400px;
   overflow-y: auto;
 }
+
+.profile-image {
+  margin-bottom: 10px;
+}
+
+.post-body {
+  padding: 15px 20px;
+}
+
+.post-status {
+  display: inline-block;
+  margin-right: 20px;
+  opacity: 0.5;
+}
+
+.favorite-body {
+  padding: 15px 20px;
+}
+
+.favorite-status {
+  display: inline-block;
+  margin-right: 20px;
+  opacity: 0.5;
+}
