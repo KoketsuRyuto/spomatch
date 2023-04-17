@@ -68,13 +68,10 @@
 
 ## 設計書
 
+
 ## 開発環境
 - OS：macOS v13 Ventura.
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- football-data API　url: http://api.football-data.org/ スポーツ結果や画像を使用
-- API-SPORTS url: https://api-sports.io/ スポーツ結果や画像を使用
