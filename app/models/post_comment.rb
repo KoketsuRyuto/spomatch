@@ -8,6 +8,11 @@ class PostComment < ApplicationRecord
     created_at.strftime("%Y-%-m-%-d %-H:%M")
   end
   
+  def self.get_active_comments
+    # ユーザーステータスが有効のコメントのみ表示
+    self.joins(:user).where(users: { is_deleted: false })
+  end
+  
   def self.ransackable_attributes(auth_object = nil)
     ["comment"]
   end

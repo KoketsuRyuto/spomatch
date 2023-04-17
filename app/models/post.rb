@@ -18,7 +18,8 @@ class Post < ApplicationRecord
   def set_date
     created_at.strftime("%Y-%-m-%-d %-H:%M")
   end
-
+  
+  # 投稿のソート機能で使用
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
 
@@ -28,7 +29,12 @@ class Post < ApplicationRecord
 
   #ユーザーステータスが有効の投稿のみ表示
   def self.get_active_posts
-    self.joins(:user).where(users: { is_deleted: false }).order(created_at: :desc)
+    self.joins(:user).where(users: { is_deleted: false })
+  end
+  
+  # ユーザーステータスが有効のコメントのみ表示
+  def active_comments
+    post_comments.get_active_comments
   end
 
   def self.ransackable_attributes(auth_object = nil)

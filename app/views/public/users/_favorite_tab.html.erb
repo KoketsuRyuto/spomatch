@@ -10,7 +10,7 @@
       </div>
       <li class="favorite-status"><%= favorite.set_date %></li>
       <li class="favorite-status"><i class="fas fa-thumbs-up"></i> <%= favorite.favorites.count %> Likes</li>
-      <li class="favorite-status"><i class="fas fa-comment-dots"></i> <%= favorite.post_comments.count%> comments</li>
+      <li class="favorite-status"><i class="fas fa-comment-dots"></i> <%= favorite.active_comments.count%> comments</li>
     </article>
   <% end %>
 <% else %>

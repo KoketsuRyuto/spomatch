@@ -10,7 +10,7 @@
       </div>
       <li class="post-status"><%= post.set_date %></li>
       <li class="post-status"><i class="fas fa-thumbs-up"></i> <%= post.favorites.count %> Likes</li>
-      <li class="post-status"><i class="fas fa-comment-dots"></i> <%= post.post_comments.count%> comments</li>
+      <li class="post-status"><i class="fas fa-comment-dots"></i> <%= post.active_comments.count%> comments</li>
     </article>
   <% end %>
 <% else %>

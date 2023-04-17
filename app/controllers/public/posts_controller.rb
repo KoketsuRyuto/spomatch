@@ -17,13 +17,14 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    # get_active_postsメソッドを使って退会済みのユーザーの投稿は非表示に
     @q = Post.ransack(params[:q])
     if params[:latest]
-      @posts = @q.result(distinct: true).latest.page(params[:page]).per(10)
+      @posts = @q.result(distinct: true).get_active_posts.latest.page(params[:page]).per(10)
     elsif params[:old]
-      @posts = @q.result(distinct: true).old.page(params[:page]).per(10)
+      @posts = @q.result(distinct: true).get_active_posts.old.page(params[:page]).per(10)
     else
-      @posts = @q.result(distinct: true).page(params[:page]).per(10)
+      @posts = @q.result(distinct: true).get_active_posts.page(params[:page]).per(10)
     end
 
     @tags = Tag.all
