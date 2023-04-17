@@ -67,7 +67,12 @@
 - グループオーナーのみグループの編集、削除が可能となります。
 
 ## 設計書
-
+- ER図<br>
+https://drive.google.com/file/d/1CynqTLP0lfzjsVG0dt89qR0quHFaqHxf/view?usp=sharing
+- テーブル定義書<br>
+https://docs.google.com/spreadsheets/d/1luzfokmauIf3icK5fpdfhuHJTOT2m_GAclUiDm3GlSU/edit?usp=sharing
+- アプリケーション詳細設計<br>
+https://docs.google.com/spreadsheets/d/1F5IS-z5Zm65XPs6jrCKKxMBHwUwhfkD_/edit?usp=sharing&ouid=105977333661044679283&rtpof=true&sd=true
 
 ## 開発環境
 - OS：macOS v13 Ventura.
