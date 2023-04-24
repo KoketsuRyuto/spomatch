@@ -10,9 +10,9 @@ ja:
         introduction: 紹介文
         group_image: グループ画像
       group_chat:
-        content: コメント
+        content: メッセージ
       post_comment:
-        comment: 文章
+        comment: コメント
       sport:
         name: スポーツ名
       tag:

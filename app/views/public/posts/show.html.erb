@@ -43,8 +43,11 @@
         <div class="mt-3 comment">
           <%= render 'public/post_comments/comment', post: @post %>
         </div>
-        <div class="mt-3">
-          <%= render 'public/post_comments/form', post: @post, post_comment: @post_comment %>
+        <div class="comment_error">
+          <%= render 'public/shared/error_messages', resource: @comment %>
+        </div>
+        <div class="mt-3 form">
+          <%= render 'public/post_comments/form', post: @post, comment: @comment %>
         </div>
       </div>
     </div>

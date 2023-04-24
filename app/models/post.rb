@@ -15,9 +15,6 @@ class Post < ApplicationRecord
     self.favorite.count
   end
 
-  def set_date
-    created_at.strftime("%Y-%-m-%-d %-H:%M")
-  end
   
   # 投稿のソート機能で使用
   scope :latest, -> {order(created_at: :desc)}
