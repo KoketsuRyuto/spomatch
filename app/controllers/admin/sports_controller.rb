@@ -8,8 +8,12 @@ class Admin::SportsController < ApplicationController
   
   def create
     @sport = Sport.new(sport_params)
-    @sport.save
-    redirect_to admin_sports_path
+    if @sport.save
+      redirect_to admin_sports_path
+    else
+      @sports = Sport.all
+      render "admin/sports/index"
+    end
   end
 
   def edit
@@ -18,8 +22,11 @@ class Admin::SportsController < ApplicationController
   
   def update
     @sport = Sport.find(params[:id])
-    @sport.update(update_params)
-    redirect_to admin_sports_path
+    if @sport.update(update_params)
+      redirect_to admin_sports_path
+    else
+      render "admin/sports/edit"
+    end
   end
   
   def destroy

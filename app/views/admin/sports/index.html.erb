@@ -1,11 +1,12 @@
 <div class="container mb-5">
+  <%= render 'public/shared/error_messages', resource: @sport %>
   <div class="row mt-5">
     <div class="col-md-8 mx-auto">
       <h4 class="text-center">スポーツ一覧・追加</h4>
       <%= form_with model: @sport, url: admin_sports_path, method: :post, local: true do |f| %>
         <%= render "form", f: f %>
       <% end %>
-      <%= render "index", sports: @sports %>
+      <%= render "admin/sports/index", sports: @sports %>
     </div>
   </div>
 </div>

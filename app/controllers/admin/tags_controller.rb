@@ -8,8 +8,12 @@ class Admin::TagsController < ApplicationController
   
   def create
     @tag = Tag.new(tag_params)
-    @tag.save
-    redirect_to admin_tags_path
+    if @tag.save
+      redirect_to admin_tags_path
+    else
+      @tags = Tag.all
+      render "admin/tags/index"
+    end
   end
 
   def edit
@@ -18,8 +22,11 @@ class Admin::TagsController < ApplicationController
   
   def update
     @tag = Tag.find(params[:id])
-    @tag.update(update_params)
-    redirect_to admin_tags_path
+    if @tag.update(update_params)
+      redirect_to admin_tags_path
+    else
+      render "admin/tags/edit"
+    end
   end
   
   def destroy
