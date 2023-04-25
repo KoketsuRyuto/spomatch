@@ -5,7 +5,7 @@
       <h4 class="text-center">メンバー</h4>
       <ul>
         <% @group.users.each do |user| %>
-          <p><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %> <%= user.name %></p>
+          <li class="group-user"><%= link_to user_path(user) do %><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %><% end %> <%= user.name %></li>
         <% end %>
       </ul>
     </div>

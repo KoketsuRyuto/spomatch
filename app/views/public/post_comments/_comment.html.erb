@@ -1,6 +1,6 @@
 <% if post.post_comments.any? %>
   <% post.active_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(40,40), class:"rounded-circle" %> <%= post_comment.user.name %></p>
+    <p><%= link_to user_path(post_comment.user) do %><%= image_tag post_comment.user.get_profile_image(40,40), class:"rounded-circle" %><% end %> <%= post_comment.user.name %></p>
     <div class="row">
       <div class="col-md-10">
         <p><%= post_comment.comment %><br><small class="text-muted"><%= post_comment.set_date %></small></p>
