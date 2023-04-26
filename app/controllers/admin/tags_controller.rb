@@ -3,7 +3,7 @@ class Admin::TagsController < ApplicationController
   
   def index
     @tag = Tag.new
-    @tags = Tag.all
+    @tags = Tag.page(params[:page]).per(6)
   end
   
   def create
@@ -36,6 +36,7 @@ class Admin::TagsController < ApplicationController
   end
   
   private
+  
   def tag_params
     params.require(:tag).permit(:name)
   end

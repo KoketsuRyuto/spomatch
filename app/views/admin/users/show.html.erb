@@ -36,19 +36,20 @@
       <% end %>
       <div class="mt-5">
         <h5 class="text-center">投稿一覧</h5>
-        <table class="teble mt-4 mx-auto" style="width: 60%;">
-          <tbody>
-            <% @posts.each do |post| %>
+        <% @posts.each do |post| %>
+          <table class="table table-borderless mt-4 mx-auto" style="width: 60%;">
+            <tbody>
               <tr class="border-bottom">
                 <td>
-                  <p><%= link_to post.title, admin_post_path(post) %></p>
-                  <p><%= post.body.truncate(30) %></p>
+                  <%= link_to post.title, admin_post_path(post) %><br>
+                  <%= post.body.truncate(30) %>
                 </td>
                 <td class="text-right align-middle"><%= image_tag post.user.get_profile_image(50,50), class:"card-image-top rounded-circle" %></td>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        <% end %>
+        <%= paginate @posts %>
       </div>
     </div>
   </div>

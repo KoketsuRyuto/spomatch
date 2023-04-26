@@ -1,6 +1,6 @@
 <% if favorites.any? %>
   <% favorites.each do |favorite| %>
-    <article>
+    <article class="border-bottom">
       <div class="favorite-profile">
         <%= link_to (favorite.user) do %><%= image_tag favorite.user.get_profile_image(20,20), class:"image-top rounded-circle" %><% end %>
       </div>

@@ -1,4 +1,4 @@
-<div class="container mb-5">
+<div class="container mb-3">
   <%= render 'public/shared/error_messages', resource: @sport %>
   <div class="row mt-5">
     <div class="col-md-8 mx-auto">
@@ -7,6 +7,7 @@
         <%= render "form", f: f %>
       <% end %>
       <%= render "admin/sports/index", sports: @sports %>
+      <%= paginate @sports %>
     </div>
   </div>
 </div>

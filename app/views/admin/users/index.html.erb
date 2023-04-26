@@ -1,8 +1,8 @@
-<div class="container mb-5">
+<div class="container mb-3">
   <div class="row mt-5">
     <div class="col-md-8 mx-auto">
       <h3 class="text-center">会員情報一覧</h3>
-      <table class="table mt-4">
+      <table class="table mt-4 border-bottom">
         <thead class="bg-secondary text-white">
           <tr class="text-center">
             <th>ID</th>
@@ -28,8 +28,8 @@
             </tr>
           <% end %>
         </tbody>
-        <%= paginate @users %>
       </table>
+      <%= paginate @users %>
     </div>
   </div>
 </div>

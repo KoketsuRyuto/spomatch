@@ -1,6 +1,6 @@
 <% if posts.any? %>
   <% posts.each do |post| %>
-    <article>
+    <article class="border-bottom">
       <div class="post-profile">
         <%= link_to (post.user) do %><%= image_tag post.user.get_profile_image(20,20), class:"image-top rounded-circle" %><% end %>
       </div>
