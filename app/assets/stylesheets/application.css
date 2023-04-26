@@ -64,37 +64,6 @@ footer {
 .navbar-toggler-icon {
   background-color: #fff;
 }
-/*スポーツ一覧のCSS*/
-.sports-table {
-  display: block;
-  overflow-y: auto;
-  height: 350px;
-  width: 200px;
-  border-collapse: collapse;
-}
-
-.sports-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: #FFF;
-  border-top:#FFF;
-}
-/*タグ一覧のCSS*/
-.tags-table {
-  display: block;
-  overflow-y: auto;
-  height: 350px;
-  border-collapse: collapse;
-}
-
-.tags-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: #FFF;
-  border-top:#FFF;
-}
 
 .pagination {
   margin-top: 20px;

@@ -2,12 +2,19 @@
   <div class="errors"><%= render 'public/shared/error_messages', resource: @group_chat %></div>
   <div class="row mt-4">
     <div class="col-md-2 mt-4">
-      <h4 class="text-center">メンバー</h4>
-      <ul>
-        <% @group.users.each do |user| %>
-          <li class="group-user"><%= link_to user_path(user) do %><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %><% end %> <%= user.name %></li>
-        <% end %>
-      </ul>
+      <table class="table table-sm">
+        <thead>
+          <th class="text-center" colspan="2">メンバー</th>
+        </thead>
+        <tbody>
+          <% @group.users.each do |user| %>
+            <tr class="border-bottom">
+              <td class="align-middle"><%= link_to user_path(user) do %><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %><% end %></td>
+              <td class="align-middle"><%= user.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-8 mx-auto">
       <div class="group-title mt-3"><%= @group.name %></div>

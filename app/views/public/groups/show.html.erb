@@ -1,10 +1,19 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-2">
-      <h4 class="text-center">メンバー</h4>
-      <% @users.each do |user| %>
-        <p><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %> <%= user.name %></p>
-      <% end %>
+      <table class="table table-sm">
+        <thead>
+          <th class="text-center" colspan="2">メンバー</th>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr class="border-bottom">
+              <td class="align-middle"><%= image_tag user.get_profile_image(50,50), class:"rounded-circle" %></td>
+              <td class="align-middle"><%= user.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-10">
       <div class="col-md-8 mx-auto">

@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @groups = @user.groups
     @sports = Sport.all
     @tags = Tag.all
     @favorite = Favorite.where(user_id: @user.id).pluck(:post_id)
@@ -18,8 +19,11 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(update_params)
-    redirect_to user_path(@user)
+    if @user.update(update_params)
+      redirect_to user_path(@user), notice: "会員情報を更新しました"
+    else
+      render :edit
+    end
   end
 
   def confilm
