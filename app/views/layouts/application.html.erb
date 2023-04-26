@@ -12,23 +12,25 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <% if current_page?(root_path) %>
-      <div class="top-visual">
-        <div class="top-visual-content">
-          <h1 class="top-visual-text">
-            Life Is Good
-          </h1>
-          <p class="top-visual-text1">
-            〜人生は素晴らしい〜
-          </p>
+    <div class="content">
+      <%= render 'layouts/header' %>
+      <% if current_page?(root_path) %>
+        <div class="top-visual">
+          <div class="top-visual-content">
+            <h1 class="top-visual-text">
+              Life Is Good
+            </h1>
+            <p class="top-visual-text1">
+              〜人生は素晴らしい〜
+            </p>
+          </div>
         </div>
-      </div>
-    <% end %>
-    <%= render "layouts/flashes" %>
-    <main>
-      <%= yield %>
-    </main>
-    <%= render 'layouts/footer' %>
+      <% end %>
+      <%= render "layouts/flashes" %>
+      <main>
+        <%= yield %>
+      </main>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
