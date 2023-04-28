@@ -15,8 +15,8 @@
   color: white;
   max-width: 1000px;
   margin: 0px auto;
-  padding: 150px 0px;
-  height: 80vh;
+  padding: 70px 0px;
+  height: 90vh;
 }
 
 .top-visual {
@@ -30,7 +30,7 @@
 .top-visual-content {
   margin: auto;
   height: 200px;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   padding-top: 60px;
   color: white;
@@ -42,4 +42,13 @@
 
 .top-visual-text1 {
   font-family: "arial black", sans-serif;
+}
+
+.about-info {
+  margin-top: 40px;
+}
+
+.about-btn {
+  width: 250px;
+  margin-top: 15px;
 }

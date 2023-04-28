@@ -23,8 +23,12 @@
             スポーツを通して繋がりの輪を広げていきましょう！
           </p>
         </div>
-        <div class="mt-5">
-          <p class="text-center"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"btn btn-secondary px-3" %></p>
+        <div class="about-info">
+          <% unless user_signed_in? %>
+            <p class="text-center"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"btn btn-secondary about-btn" %></p>
+            <p class="text-center"><%= link_to 'ログインページへ', new_user_session_path, class:"btn btn-success about-btn" %></p>
+          <% end %>
+          <p class="text-center"><%= link_to 'トップページへ', top_path, class:"btn btn-info about-btn" %></p>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
   # ゲストユーザー用のルーティング
   devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root to: 'homes#top'
-    get 'about' => 'homes#about'
+    root to: 'homes#about'
+    get 'top' => 'homes#top'
     resources :users, only: [:show,:edit,:update]
     get 'users/:id/confilm' => 'users#confilm',as:"users/confilm"
     patch 'users/:id/withdraw' => 'users#withdraw',as:"users/withdraw"

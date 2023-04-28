@@ -1,5 +1,5 @@
 <header>
-  <h1 class="heading text-center pt-3"><a href="/"><font face="Impact">SPOMATCH</font></a></h1>
+  <h1 class="heading text-center pt-3"><a href="/top"><font face="Impact">SPOMATCH</font></a></h1>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <!--ユーザーがログインしている場合-->
-              <li class="nav-item"><%= link_to about_path, class:"nav-link text-white" do %>About<% end %></li>
+              <li class="nav-item"><%= link_to root_path, class:"nav-link text-white" do %>About<% end %></li>
               <li class="nav-item"><%= link_to user_path(current_user), class:"nav-link text-white" do %>Mypage<% end %></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +33,7 @@
               <li class="nav-item"><%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-white" do %>Log out<% end %></li>
             <% elsif admin_signed_in? %>
             <!--管理者側でログインしている場合-->
-              <li class="nav-item"><%= link_to about_path, class:"nav-link text-white" do %>About<% end %></li>
+              <li class="nav-item"><%= link_to root_path, class:"nav-link text-white" do %>About<% end %></li>
               <li class="nav-item"><%= link_to admin_posts_path, class:"nav-link text-white" do %>Post<% end %></li>
               <li class="nav-item"><%= link_to admin_post_comments_path, class:"nav-link text-white" do %>Comments<% end %></li>
               <li class="nav-item"><%= link_to admin_path, class:"nav-link text-white" do %>Users<% end %></li>
@@ -42,7 +42,7 @@
               <li class="nav-item"><%= link_to destroy_admin_session_path, method: :delete, class:"nav-link text-white" do %>Log out<% end %></li>
             <% else %>
             <!--まだログインされていない場合-->
-              <li class="nav-item"><%= link_to about_path, class:"nav-link text-white" do %>About<% end %></li>
+              <li class="nav-item"><%= link_to root_path, class:"nav-link text-white" do %>About<% end %></li>
               <li class="nav-item"><%= link_to posts_path, class:"nav-link text-white" do %>Post<% end %></li>
               <li class="nav-item"><%= link_to new_user_registration_path, class:"nav-link text-white" do %>Sign up<% end %></li>
               <li class="nav-item"><%= link_to new_user_session_path, class:"nav-link text-white" do %>Log in<% end %></li>
