@@ -27,6 +27,7 @@
           <% unless user_signed_in? %>
             <p class="text-center"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"btn btn-secondary about-btn" %></p>
             <p class="text-center"><%= link_to 'ログインページへ', new_user_session_path, class:"btn btn-success about-btn" %></p>
+            <p class="text-center"><%= link_to '新規会員登録へ', new_user_registration_path, class:"btn btn-primary about-btn" %></p>
           <% end %>
           <p class="text-center"><%= link_to 'トップページへ', top_path, class:"btn btn-info about-btn" %></p>
         </div>
