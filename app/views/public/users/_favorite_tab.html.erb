@@ -9,8 +9,8 @@
         <p><%= favorite.body.truncate(30) %></p>
       </div>
       <li class="favorite-status"><%= favorite.set_date %></li>
-      <li class="favorite-status"><i class="fas fa-thumbs-up"></i> <%= favorite.favorites.count %> Likes</li>
-      <li class="favorite-status"><i class="fas fa-comment-dots"></i> <%= favorite.active_comments.count%> comments</li>
+      <li class="favorite-status"><i class="fas fa-thumbs-up"></i> <%= favorite.favorites.size %> Likes</li>
+      <li class="favorite-status"><i class="fas fa-comment-dots"></i> <%= favorite.active_comments.size %> comments</li>
     </article>
   <% end %>
 <% else %>

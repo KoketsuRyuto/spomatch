@@ -9,10 +9,9 @@ class Public::GroupChatsController < ApplicationController
   end
 
   def create
-    @group_chat = @group.group_chats.new(group_chat_params)
-    @group_chat.user = current_user
-    @group_chats = @group.group_chats.includes(:user)
+    @group_chat = current_user.group_chats.new(group_chat_params)
     if @group_chat.save
+      @group_chats = @group.group_chats.includes(:user)
     else
       render 'error'
     end
@@ -25,12 +24,11 @@ class Public::GroupChatsController < ApplicationController
   end
 
   def group_chat_params
-    params.require(:group_chat).permit(:content)
+    params.require(:group_chat).permit(:content).merge(group: @group)
   end
 
   def not_join
-    group = Group.find(params[:id])
-    unless current_user.group_users.find_by(group_id: group.id)
+    unless current_user.group_users.find_by(group_id: @group.id)
       redirect_to groups_path, alert: 'グループに参加していません'
     end
   end

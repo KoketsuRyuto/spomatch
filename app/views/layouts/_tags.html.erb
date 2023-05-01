@@ -8,7 +8,7 @@
         <td class="text-center">
           <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
           <% unless tag.posts.count.zero? %>
-            <%= "(#{tag.posts.count})" %>
+            <%= "(#{tag.post_tags.size})" %>
           <% end %>
         </td>
       </tr>

@@ -7,18 +7,17 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to post_path(@post), notice: "投稿に成功しました"
     else
-      render :new
+      render 'new'
     end
   end
 
   def index
     # get_active_postsメソッドを使って退会済みのユーザーの投稿は非表示に
-    @q = Post.ransack(params[:q])
+    @q = Post.includes(:user).ransack(params[:q])
     if params[:latest]
       @posts = @q.result(distinct: true).get_active_posts.latest.page(params[:page]).per(6)
     elsif params[:old]
@@ -27,22 +26,24 @@ class Public::PostsController < ApplicationController
       @posts = @q.result(distinct: true).get_active_posts.page(params[:page]).per(6)
     end
 
-    @tags = Tag.all
-    @sports = Sport.all
+    @tags = Tag.includes(:post_tags)
   end
 
   # 投稿タグの検索結果を表示するページ
   def search_tag
-    @post_tags = Tag.page(params[:page]).per(10)
+    # パラメータから検索されたタグジャンルを取得する
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.all
+    # 全てのタグジャンルを取得する（ビューでリストとして表示するため）
+    @tags = Tag.all
+    # 検索されたタグジャンルに関連する投稿を取得する
+    @posts = @tag.posts.page(params[:page]).per(10)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:tags, :post_comments).find(params[:id])
     @comment = PostComment.new
-    @sports = Sport.all
-    @tags = Tag.all
+    @sports = Sport.includes(:groups, :group_sports)
+    @tags = Tag.includes(:post_tags)
     @post_tags = @post.tags
   end
 
@@ -55,7 +56,7 @@ class Public::PostsController < ApplicationController
     if @post.update(update_params)
       redirect_to post_path(@post), notice: "投稿をしました"
     else
-      render :edit
+      render 'edit'
     end
   end
 

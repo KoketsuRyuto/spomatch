@@ -5,9 +5,9 @@
       <!--タグリスト-->
       <div class="sport-list">
         <label class="mt-3 border-bottom">
-          <% @group_sports.each do |group|%>
-            <%=link_to group.name,search_sport_path(sport_id: group.id) %>
-            <%="(#{group.groups.count})" %>
+          <% @sports.each do |sport|%>
+            <%=link_to sport.name,search_sport_path(sport_id: sport.id) %>
+            <%="(#{sport.groups.size})" %>
           <% end %>
         </label>
       </div>
@@ -20,7 +20,7 @@
                 <td>
                   <%= link_to group.name, group_path(group) %><br>
                   <small>ジャンル名： <%= group.sports.pluck(:name).join("・") %></small><br>
-                  <small>メンバー： <%= group.group_users.count %></small>
+                  <small>メンバー： <%= group.group_users.size %></small>
                 </td>
                 <td class="text-right align-middle"><%= image_tag group.get_group_image(50,50), class:"rounded-circle" %></td>
               </tr>
@@ -28,6 +28,7 @@
           <% end %>
         </div>
       </div>
+      <%= paginate @groups %>
     </div>
   </div>
 </div>

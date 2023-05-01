@@ -1,14 +1,13 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search_sport]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authorize_owner, only: [:edit, :update]
 
   def new
     @group = Group.new
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.owner_id = current_user.id
+    @group = current_user.groups.build(group_params)
     @group.users << current_user
     if @group.save
       redirect_to groups_path, notice: "グループの作成に成功しました"
@@ -23,9 +22,12 @@ class Public::GroupsController < ApplicationController
   end
   # 検索されたスポーツジャンルの一覧を表示するページ
   def search_sport
-    @group_sports = Sport.page(params[:page]).per(10)
+    # パラメータから検索されたスポーツジャンルを取得する
     @sport = Sport.find(params[:sport_id])
-    @groups = @sport.groups.all
+    # 全てのスポーツジャンルを取得する（ビューでリストとして表示するため）
+    @sports = Sport.all
+    # 検索されたスポーツジャンルに関連するグループを取得する（N+1問題を避けるために、includesを使用する）
+    @groups = @sport.groups.includes(:users).page(params[:page]).per(10)
   end
 
   def show
@@ -73,9 +75,9 @@ class Public::GroupsController < ApplicationController
     params.require(:group).permit(:name,:introduction,:group_image,sport_ids: [])
   end
 
-  def ensure_correct_user
-    @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
+  def authorize_owner
+    group = Group.find(params[:id])
+    unless group.owner_id == current_user.id
       redirect_to groups_path
     end
   end

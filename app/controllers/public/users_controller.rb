@@ -1,16 +1,13 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update,:confilm,:withdraw]
+  before_action :authorize_user, only: [:edit, :update,:confilm,:withdraw]
   before_action :check_guest_user, only: [:edit,:update,:confilm,:withdraw]
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:posts, :groups, :favorites).find(params[:id])
     @posts = @user.posts
     @groups = @user.groups
-    @sports = Sport.all
-    @tags = Tag.all
-    @favorite = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorites = Post.find(@favorite)
+    @favorites = Post.joins(:favorites).where(favorites: { user_id: @user.id }).includes(:user)
   end
 
   def edit
@@ -42,9 +39,9 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name,:introduction,:profile_image)
   end
 
-  def ensure_correct_user
-    @user = User.find(params[:id])
-    unless @user == current_user
+  def authorize_user
+    user = User.find(params[:id])
+    unless user == current_user
       redirect_to user_path(current_user)
     end
   end

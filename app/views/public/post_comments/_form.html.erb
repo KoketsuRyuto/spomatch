@@ -1,6 +1,6 @@
 <div>
   <%= form_with model: [post,comment], local: false do |f| %>
-    <%= f.text_area :comment, rows: "5", placeholder: "コメント 30文字以内", class:"form-control bg-light" %>
+    <%= f.text_area :comment, rows: "2", placeholder: "コメント 30文字以内", class:"form-control bg-light" %>
     <%= f.submit "コメントを投稿", class:"btn btn-success px-4 mt-3" %>
   <% end %>
 </div>
