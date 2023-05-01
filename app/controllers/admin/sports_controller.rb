@@ -3,7 +3,7 @@ class Admin::SportsController < ApplicationController
   
   def index
     @sport = Sport.new
-    @sports = Sport.page(params[:page]).per(6)
+    @sports = Sport.all
   end
   
   def create

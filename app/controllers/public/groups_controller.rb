@@ -1,5 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search_sport]
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :authorize_owner, only: [:edit, :update]
 
   def new
@@ -7,7 +8,8 @@ class Public::GroupsController < ApplicationController
   end
 
   def create
-    @group = current_user.groups.build(group_params)
+    @group = Group.new(group_params)
+    @group.owner_id = current_user.id
     @group.users << current_user
     if @group.save
       redirect_to groups_path, notice: "グループの作成に成功しました"
@@ -31,7 +33,6 @@ class Public::GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
     @users = @group.users
   end
 
@@ -48,11 +49,9 @@ class Public::GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
     if @group.update(update_params)
       redirect_to group_path(@group), notice: "グループ情報を更新しました"
     else
@@ -61,11 +60,15 @@ class Public::GroupsController < ApplicationController
   end
 
   def destroy
-    Group.find(params[:id]).destroy
+    @group.destroy
     redirect_to groups_path, notice: "グループを削除しました"
   end
 
   private
+  
+  def set_group
+    @group = Group.find(params[:id])
+  end
 
   def group_params
     params.require(:group).permit(:name,:introduction,:group_image,:owner_id,sport_ids: [])

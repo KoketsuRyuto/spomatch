@@ -2,7 +2,7 @@ class Admin::PostCommentsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @q = PostComment.ransack(params[:q])
+    @q = PostComment.includes(:posts).ransack(params[:q])
     @post_comments = @q.result(distinct: true).page(params[:page]).per(10)
   end
 

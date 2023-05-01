@@ -1,13 +1,14 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:search_tag]
-  before_action :ensure_correct_post, only: [:edit,:update,:destroy]
-
+  before_action :authenticate_user!, except: [:index, :search_tag]
+  before_action :ensure_correct_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
+  
   def new
     @post = Post.new
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to post_path(@post), notice: "投稿に成功しました"
     else
@@ -48,11 +49,9 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(update_params)
       redirect_to post_path(@post), notice: "投稿をしました"
     else
@@ -61,11 +60,15 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    @post.destroy
     redirect_to posts_path, notice: "投稿を削除しました"
   end
 
   private
+  
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title,:body, tag_ids: [])

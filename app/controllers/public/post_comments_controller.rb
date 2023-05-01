@@ -4,6 +4,7 @@ class Public::PostCommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
     @comment = post.post_comments.new(post_comment_params)
+    @comment.user_id = current_user.id
     unless @comment.save
       render "error"
     end
@@ -17,6 +18,6 @@ class Public::PostCommentsController < ApplicationController
   private
   
   def post_comment_params
-    params.require(:post_comment).permit(:comment).merge(user: current_user)
+    params.require(:post_comment).permit(:comment)
   end
 end
