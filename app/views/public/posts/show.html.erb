@@ -24,6 +24,11 @@
           </div>
         </div>
       </div>
+      <div class="image-field mt-5">
+        <% if @post.post_image.attached? %>
+          <%= image_tag @post.get_post_image(150,150) %>
+        <% end %>
+      </div>
       <div class="body mt-5">
         <%= simple_format(@post.body) %>
       </div>

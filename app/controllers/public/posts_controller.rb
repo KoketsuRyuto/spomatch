@@ -53,7 +53,7 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(update_params)
-      redirect_to post_path(@post), notice: "投稿をしました"
+      redirect_to post_path(@post), notice: "投稿が更新されました"
     else
       render 'edit'
     end
@@ -71,11 +71,11 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title,:body, tag_ids: [])
+    params.require(:post).permit(:title,:body,:post_image, tag_ids: [])
   end
 
   def update_params
-    params.require(:post).permit(:title,:body, tag_ids: [])
+    params.require(:post).permit(:title,:body,:post_image, tag_ids: [])
   end
   
   def ensure_correct_post
