@@ -5,9 +5,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.includes(:posts, :groups, :favorites).find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.latest
     @groups = @user.groups
-    @favorites = Post.joins(:favorites).where(favorites: { user_id: @user.id }).includes(:user)
+    @favorites = Post.joins(:favorites).where(favorites: { user_id: @user.id }).includes(:user).latest
   end
 
   def edit

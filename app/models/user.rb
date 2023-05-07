@@ -29,6 +29,9 @@ class User < ApplicationRecord
     super && (is_deleted == false)
   end
 
+  # 最新の投稿から表示する際に
+  scope :latest, -> {order(created_at: :desc)}
+
   # ゲストユーザーでのログイン時に使用
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
