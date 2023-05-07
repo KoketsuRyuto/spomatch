@@ -10,6 +10,10 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: {maximum: 30}
   validates :body, presence: true, length: {maximum: 200}
 
+  def get_post_image(width,height)
+    post_image.variant(resize_to_fill:[width,height])
+  end
+  
   # いいねの件数をカウントする
   def favorites_count
     self.favorite.count

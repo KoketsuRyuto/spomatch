@@ -3,9 +3,9 @@
     <div class="col-md-2 mx-auto">
       <%= render 'layouts/tags', tags: @tags %>
     </div>
-    <div class="col-md-6 mx-1">
-      <h4><%= @post.title %></h4>
-      <div class="card">
+    <div class="col-md-6">
+      <h4 class="post-title"><%= @post.title %></h4>
+      <div class="card mt-2">
         <div class="row g-0">
           <div class="col-md-3">
             <%= image_tag @post.user.get_profile_image(100,100), class:"card-image-top" %>
@@ -24,10 +24,15 @@
           </div>
         </div>
       </div>
-      <div class="body mt-5">
+      <div class="image-field">
+        <% if @post.post_image.attached? %>
+          <%= image_tag @post.get_post_image(300,150) %>
+        <% end %>
+      </div>
+      <div class="body">
         <%= simple_format(@post.body) %>
       </div>
-      <div class="tags mt-5">
+      <div class="tags">
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name, search_tag_path(tag_id: tag.id), class:"btn btn-sm btn-info mx-1" %>
         <% end %>

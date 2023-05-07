@@ -1,11 +1,16 @@
 <div class="form-group">
   <%= f.label :title, "タイトル" %>
-  <%= f.text_field :title, placeholder: "タイトル 30文字以内", class:"form-control" %> 
+  <%= f.text_field :title, placeholder: "タイトル 30文字以内", class:"form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :post_image, "画像" %><br>
+  <%= f.file_field :post_image %>
 </div>
 
 <div class="form-group">
   <%= f.label :body, "本文" %>
-  <%= f.text_area :body, placeholder: "本文 200文字以内", class:"form-control", rows: 15 %>
+  <%= f.text_area :body, placeholder: "本文 200文字以内", class:"form-control", rows: 10 %>
 </div>
 
 <div class="form-group">
